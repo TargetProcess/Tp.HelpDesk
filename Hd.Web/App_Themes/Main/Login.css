@@ -1,0 +1,9 @@
+﻿BODY {background: #EBEBEB}
+.inputLarge {font: 16px Verdana}
+	
+.greenBg {background: url('Images/green_bg.gif') repeat-x 0 100%}
+.loginTitle {background: #C2E4B7; font: bold 14px Arial; padding: 0px 20px}
+	
+.copy {padding: 20px; font: 10px Verdana; border-top: 1px solid #CCC}
+.loginForm {background: #FFF url('Images/bg_dashed_bottom.gif') repeat-x 0 100%}
+.loginForm TD {padding: 5px 10px; font: 14px Verdana}

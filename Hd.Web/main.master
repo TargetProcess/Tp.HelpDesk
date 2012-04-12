@@ -1,0 +1,83 @@
+<%@ Import Namespace="Hd.Portal.Components" %>
+<%@ Import Namespace="Hd.Portal" %>
+
+<%@ Master Language="C#" AutoEventWireup="true" Inherits="main" CodeBehind="main.master.cs" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+	<title></title>
+</head>
+<body>
+	<form id="frm" runat="server">
+	<asp:ScriptManager ID="sm" runat="server" ScriptMode="Release" />
+	<div id="top">
+		<div id="title">
+			<span style="margin-left: 35px">
+				<%= Settings.Title %>
+			</span>
+		</div>
+		<div id="logout">
+			<span id="spanUsername" runat="server">
+				<asp:HyperLink runat="server" NavigateUrl="UserProfile.aspx" ID="settingsLink">
+					<asp:Label ID='lblLoginName' runat="server"></asp:Label></asp:HyperLink>
+				| </span>
+			<tp:TpLoginStatus ID="loginStatus" runat="server" OnLoggingOut="loginStatus_LoggingOut" />
+			<br />
+		</div>
+		<br style="clear: both" />
+		<div style="clear: both">
+			<div style="float: left; width: 60%">
+				<asp:ContentPlaceHolder ID="tabs" runat="server">
+				</asp:ContentPlaceHolder>
+			</div>
+			<div style="float: right; width: 30%; margin-right: 15px; text-align: right">
+				<table style="margin-top: 10px" cellpadding="0" cellspacing="0" border="0" align="right"
+					runat="server" id="tblSearch">
+					<tr>
+						<td colspan="2">
+							<asp:RequiredFieldValidator ID="RequiredFieldValidator1" Text="Please enter keyword"
+								runat="server" ValidationGroup="KeywordSearch" ControlToValidate="txtSearch"></asp:RequiredFieldValidator>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<tp:TpTextBox MaxLength="150" ID="txtSearch" OnEnterPressSubmitControl="btnSearch" ValidationGroup="KeywordSearch" CausesValidation="true"
+								runat="server"></tp:TpTextBox>&nbsp;
+						</td>
+						<td>
+							<asp:Button UseSubmitBehavior="true" ID="btnSearch" runat="server" Text="Search requests"
+								CssClass="button" OnClick="btnSearch_Click" ValidationGroup="KeywordSearch" CausesValidation="true" />
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	<br style="clear: both" />
+	<asp:UpdatePanel ID="pnlLastAction" runat="server">
+		<ContentTemplate>
+			<table width="100%" cellpadding="0" cellspacing="0">
+				<tr>
+					<td>
+						<tp:LastActionLabel ID="lstA" runat="server" />
+					</td>
+				</tr>
+			</table>
+		</ContentTemplate>
+	</asp:UpdatePanel>
+	<div>
+		<asp:ContentPlaceHolder ID="plcContent" runat="server">
+		</asp:ContentPlaceHolder>
+	</div>
+	</form>
+	<div id="footer">
+	</div>
+	<div id="copy">
+		Copyright &copy; 2004-2012 <a href="http://www.targetprocess.com" title="Agile project management software"
+			target="_blank">TargetProcess.</a> All rights reserved.<br />
+	</div>
+	<br />
+	<br />
+</body>
+</html>

@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1D683B9F-8554-4FBC-9236-D5C96C0CAE96}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Hd.Portal</RootNamespace>
+    <AssemblyName>Hd.Portal</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\Tp.HelpDesk\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'FuncTests|AnyCPU' ">
+    <OutputPath>bin\FuncTests\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\Libs\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Services3">
+      <HintPath>..\Libs\Microsoft.Web.Services3.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Tp.Service.Proxies">
+      <HintPath>..\Libs\Tp.Service.Proxies.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ChildEntityCache.cs" />
+    <Compile Include="Components\ActionProcessor.cs" />
+    <Compile Include="Components\BusinessQuery.cs" />
+    <Compile Include="Components\Cache.cs" />
+    <Compile Include="Components\Context.cs" />
+    <Compile Include="Components\Formatter.cs" />
+    <Compile Include="Components\HttpLastActionHolder.cs" />
+    <Compile Include="Components\HttpUserRetriever.cs" />
+    <Compile Include="Components\ILastActionHolder.cs" />
+    <Compile Include="Components\IUserRetriever.cs" />
+    <Compile Include="Components\LastActionHolder.cs" />
+    <Compile Include="Entities\Request\AllRequestQuery.cs" />
+    <Compile Include="Entities\Request\InternalQuery\RequestDefaultQuery.cs" />
+    <Compile Include="Entities\Request\IdeasQuery.cs" />
+    <Compile Include="Entities\Request\InternalQuery\RequesterRequestQuery.cs" />
+    <Compile Include="Entities\Request\InternalQuery\RequestToViewQuery.cs" />
+    <Compile Include="Entities\Request\IssuesQuery.cs" />
+    <Compile Include="Entities\Request\OwnerRequestQuery.cs" />
+    <Compile Include="Entities\Request\RequestScope.cs" />
+    <Compile Include="Components\Settings.cs" />
+    <Compile Include="Components\StringUtils.cs" />
+    <Compile Include="Components\UserRetriever.cs" />
+    <Compile Include="DataConverter.cs" />
+    <Compile Include="Entities\Actor\Role.cs" />
+    <Compile Include="Entities\Attachment\Attachment.cs" />
+    <Compile Include="Entities\Comment\Comment.cs" />
+    <Compile Include="Entities\EntityState\EntityState.cs" />
+    <Compile Include="Entities\GeneralUser\GeneralUser.cs" />
+    <Compile Include="Entities\PasswordRecovery\PasswordRecovery.cs" />
+    <Compile Include="Entities\Priority\Priority.cs" />
+    <Compile Include="Entities\Requester\Requester.cs" />
+    <Compile Include="Entities\RequestType\RequestType.cs" />
+    <Compile Include="Entities\Request\InternalQuery\GlobalRequestQuery.cs" />
+    <Compile Include="Entities\Request\InternalQuery\RequestToEditQuery.cs" />
+    <Compile Include="Entities\Request\Request.cs" />
+    <Compile Include="Entities\Request\Cache\RequestersCountCache.cs" />
+    <Compile Include="Entities\Request\InternalQuery\PrivateRequestQuery.cs" />
+    <Compile Include="Entities\Request\InternalQuery\RequestQueryFactory.cs" />
+    <Compile Include="Entities\Request\Cache\TeamCache.cs" />
+    <Compile Include="Entities\Team\Team.cs" />
+    <Compile Include="Entities\User\User.cs" />
+    <Compile Include="FileAttachment.cs" />
+    <Compile Include="IDataFactory.cs" />
+    <Compile Include="IEntity.cs" />
+    <Compile Include="DataPortal.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="SearchFilter.cs" />
+    <Compile Include="ServiceFactory.cs" />
+    <Compile Include="ServiceManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Hd.QueryExtensions\Hd.QueryExtensions.csproj">
+      <Project>{F8B3212E-0F9A-44BE-A3B8-5F5831143341}</Project>
+      <Name>Hd.QueryExtensions</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
