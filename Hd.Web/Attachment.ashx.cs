@@ -3,8 +3,6 @@
 // TargetProcess proprietary/confidential. Use is subject to license terms. Redistribution of this file is strictly forbidden.
 // 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Web;
 using Hd.Portal;
 using Tp.AttachmentServiceProxy;
@@ -23,24 +21,24 @@ namespace Hd.Web
 
 			Int32.TryParse(context.Request.QueryString["AttachmentID"], out attachmentID);
 
-			if (attachmentID <= 0)
+			try
 			{
-				AttachmentNotFound(context);
+				DownloadAttachment(context, Portal.Attachment.RetrieveAttachmentInfo(attachmentID));
 			}
-			else
-			{
-				var serviceWse = ServiceManager.GetService<AttachmentService>();
-				var attachmentInfo = serviceWse.EnsureAttachment(attachmentID);
-
-				if (string.IsNullOrEmpty(attachmentInfo.UniqueFileName))
+			catch (EntityNotFoundException)
 				{
 					AttachmentNotFound(context);
 				}
-				else
+			catch(AccessDeniedException)
 				{
-					DownloadAttachment(context, attachmentInfo);
+				AccessDenied(context);
 				}
 			}
+
+		private static void AccessDenied(HttpContext context)
+		{
+			context.Response.ContentType = "text/plain";
+			context.Response.Write("You don't have permissions to see the requested entity");
 		}
 
 		private static void AttachmentNotFound(HttpContext context)

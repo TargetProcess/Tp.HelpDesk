@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Web.Security;
-using System.Linq;
 using Hd.Portal;
-using Hd.Portal.Components;
 using Hd.Portal.Components.LastActionProcessor;
 using Hd.Web.Extensions;
 using Hd.Web.Extensions.Components;
@@ -39,35 +37,13 @@ public partial class ViewRequest : PersisterBasePage
 					}
 				}
 
-				if (IsNotSavedRequest(entity) || !HaveRightToViewRequest(entity))
+				if (IsNotSavedRequest(entity) || !PermissionManager.HaveRightToViewRequest(entity))
 				{
 					ActionProcessor.ReplaceLastAction("Request not found");
 					Response.Redirect(Requester.IsLogged ? "~/MyRequests.aspx" : "~/Default.aspx");
 				}
 			}
 		}
-	}
-
-	private static bool HaveRightToViewRequest(Request request)
-	{
-		if (request.OwnerID == Requester.LoggedUserID)
-		{
-			return true;
-		}
-		if (request.Requesters.Any(x => x.RequesterID == Requester.LoggedUserID))
-		{
-			return true;
-		}
-		if (request.IsPrivate == true)
-		{
-			return false;
-		}
-		if (Settings.Scope == RequestScope.Private)
-		{
-			return false;
-		}
-
-		return true;
 	}
 
 	private static bool IsNotSavedRequest(Request request)
