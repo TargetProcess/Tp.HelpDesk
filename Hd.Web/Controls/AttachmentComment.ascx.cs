@@ -65,7 +65,11 @@ public partial class Controls_AttachmentComment : UserControl, ITabControl
             comment.ParentID = parentID;
 
         comment.Description = txtComment.Text;
-        comment.Save();
+
+		if (CanEditComment(comment))
+		{
+			comment.Save();
+		}
 
         LoadComments(GeneralID);
 		LoadAttachments(GeneralID);
@@ -76,10 +80,21 @@ public partial class Controls_AttachmentComment : UserControl, ITabControl
 
     protected void DeleteComment(string argument)
     {
-        ActionProcessor.LastAction = "The comment was deleted";
-        Comment.Delete(Int32.Parse(argument));
-        LoadContent(GeneralID);
-        updPanel.Update();
+		Comment comment;
+		var exists = Comment.TryRetrieve(Int32.Parse(argument), out comment);
+
+		if (exists && CanEditComment(comment))
+		{
+			ActionProcessor.LastAction = "The comment was deleted";
+			Comment.Delete(Int32.Parse(argument));
+			LoadContent(GeneralID);
+			updPanel.Update();
+		}
     }
+
+	private bool CanEditComment(Comment comment)
+	{
+		return Requester.LoggedUserID == comment.OwnerID;
+	}
 }
 

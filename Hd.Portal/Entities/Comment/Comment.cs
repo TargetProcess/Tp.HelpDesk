@@ -40,6 +40,25 @@ namespace Hd.Portal
 			return comment;
 		}
 
+		public static bool TryRetrieve(int? id, out Comment comment)
+		{
+			try
+			{
+				comment = (DataPortal.Instance.Retrieve(typeof(Comment), id) as Comment);
+				if (comment == null)
+				{
+					return false;
+				}
+
+				return true;
+			}
+			catch (Exception)
+			{
+				comment = null;
+				return false;
+			}
+		}
+
 		public void Save()
 		{
 			CommentService serviceWse = ServiceManager.GetService<CommentService>();
