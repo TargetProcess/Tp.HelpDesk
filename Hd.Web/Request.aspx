@@ -50,7 +50,15 @@
 				</script>
 				<br />
 				<br />
-				<asp:CheckBox runat="server" TextAlign="Right" ID="chkUrgent" Text="Is Urgent?" Checked='<%# Bind("IsUrgent") %>' />
+				<asp:PlaceHolder Visible='<%# Eval("IsNew") %>' runat="server">
+					<asp:CheckBox runat="server" TextAlign="Right" ID="chkUrgent" Text="Is Urgent?" Checked='<%# Bind("IsUrgent") %>' /><br />
+				</asp:PlaceHolder>
+				<asp:PlaceHolder Visible='<%# !(bool)Eval("IsNew") %>' runat="server">
+					<span class="fieldName">Business Value</span><br />
+					<tp:TpDropDownList ID="lstPriority" runat="server" DataSourceID="prioritySource" DataTextField="Name"
+						DataValueField="PriorityID" SelectedValue='<%#Bind("PriorityID") %>'>
+					</tp:TpDropDownList>
+				</asp:PlaceHolder>
 				<asp:Panel ID="pnlPrivate" runat="server" Visible='<%# Bind("IsNew") %>'>
 					<br />
 					<br />
@@ -85,5 +93,8 @@
 	</tp:TpObjectDataSource>
 	<tp:TpObjectDataSource ID="requestTypeSource" runat="server" DataObjectTypeName="Hd.Portal.RequestType"
 		SelectMethod="RetrieveAll" TypeName="Hd.Portal.RequestType">
+	</tp:TpObjectDataSource>
+	<tp:TpObjectDataSource ID="prioritySource" runat="server" DataObjectTypeName="Hd.Portal.Priority"
+		SelectMethod="RetrieveAllForRequest" TypeName="Hd.Portal.Priority">
 	</tp:TpObjectDataSource>
 </asp:Content>

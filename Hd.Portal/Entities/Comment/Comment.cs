@@ -1,11 +1,9 @@
 // 
-// Copyright (c) 2005-2008 TargetProcess. All rights reserved.
+// Copyright (c) 2005-2012 TargetProcess. All rights reserved.
 // TargetProcess proprietary/confidential. Use is subject to license terms. Redistribution of this file is strictly forbidden.
 // 
-using System;
-using System.Collections.Generic;
-using System.Text;
 
+using System;
 using Hd.Portal.Components.LastActionProcessor;
 
 using log4net;
@@ -32,8 +30,7 @@ namespace Hd.Portal
 
 		public static Comment RetrieveOrCreate(int? id)
 		{
-			Comment comment = new Comment();
-			comment.OwnerID = Requester.Logged.ID;
+			var comment = new Comment {OwnerID = Requester.Logged.ID};
 
 			comment = (DataPortal.Instance.Retrieve(typeof (Comment), id) as Comment) ?? comment;
 
@@ -45,12 +42,7 @@ namespace Hd.Portal
 			try
 			{
 				comment = (DataPortal.Instance.Retrieve(typeof(Comment), id) as Comment);
-				if (comment == null)
-				{
-					return false;
-				}
-
-				return true;
+				return comment != null;
 			}
 			catch (Exception)
 			{
@@ -61,22 +53,22 @@ namespace Hd.Portal
 
 		public void Save()
 		{
-			CommentService serviceWse = ServiceManager.GetService<CommentService>();
+			var serviceWse = ServiceManager.GetService<CommentService>();
 
-			CommentDTO commentDTO = new DataConverter<Comment>().Convert<CommentDTO>(this);
+			var commentDto = new DataConverter<Comment>().Convert<CommentDTO>(this);
 			try
 			{
-				bool isNew = !commentDTO.ID.HasValue || commentDTO.ID.Value <= 0;
+				bool isNew = !commentDto.ID.HasValue || commentDto.ID.Value <= 0;
 				if (isNew)
 				{
-					serviceWse.Create(commentDTO);
+					serviceWse.Create(commentDto);
 				}
 				else
 				{
-					serviceWse.Update(commentDTO);
+					serviceWse.Update(commentDto);
 				}
 
-				ActionProcessor actionProcessor = new ActionProcessor();
+				var actionProcessor = new ActionProcessor();
 				actionProcessor.ProcessAction(isNew ? ActionTypeEnum.Add : ActionTypeEnum.Update, this);
 			}
 			catch (Exception e)

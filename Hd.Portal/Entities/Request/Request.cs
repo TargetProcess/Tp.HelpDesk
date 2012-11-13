@@ -1,9 +1,7 @@
-//  
-// Copyright (c) 2005-2009 TargetProcess. All rights reserved.
+// 
+// Copyright (c) 2005-2012 TargetProcess. All rights reserved.
 // TargetProcess proprietary/confidential. Use is subject to license terms. Redistribution of this file is strictly forbidden.
 // 
-
-#region
 
 using System;
 using System.Collections.Generic;
@@ -19,8 +17,6 @@ using Tp.AttachmentServiceProxy;
 using Tp.EntityStateServiceProxy;
 using Tp.FileServiceProxy;
 using Tp.RequestServiceProxy;
-
-#endregion
 
 namespace Hd.Portal
 {
@@ -288,8 +284,17 @@ namespace Hd.Portal
 			var actionTypeEnum = request.IsNew ? ActionTypeEnum.Add : ActionTypeEnum.Update;
 			try
 			{
-				request.ID = service.Save(dto, Requester.Logged.ID, request.IsUrgent);
-				request.RequestID = request.ID;
+				if(request.IsNew)
+				{
+					request.ID = service.Save(dto, Requester.Logged.ID, request.IsUrgent);
+					request.RequestID = request.ID;
+				}
+				else
+				{
+					request.LastEditorID = Requester.Logged.ID;
+					service.Update(dto);
+				}
+
 				var actionProcessor = new ActionProcessor();
 
 				actionProcessor.ProcessAction(actionTypeEnum, request);

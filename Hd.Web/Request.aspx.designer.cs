@@ -82,4 +82,13 @@ public partial class RequestPage {
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
     protected global::Hd.Web.Extensions.TpObjectDataSource requestTypeSource;
+    
+    /// <summary>
+    /// prioritySource control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::Hd.Web.Extensions.TpObjectDataSource prioritySource;
 }
