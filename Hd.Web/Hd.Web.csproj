@@ -105,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Issues.aspx" />
+    <Compile Include="Controls\DescriptionLabel.cs" />
     <Compile Include="Controls\ProductDropDown.ascx.cs">
       <DependentUpon>ProductDropDown.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

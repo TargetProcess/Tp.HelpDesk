@@ -1,10 +1,9 @@
 <%@ Page Language="C#" MasterPageFile="~/main.master" AutoEventWireup="true"
 	Inherits="ViewRequest" Title="Untitled Page" Codebehind="ViewRequest.aspx.cs" %>
 
-<%@ Import Namespace="Hd.Web.Extensions" %>
 <%@ Register Src="~/Controls/RelatedEntities.ascx" TagName="RelatedEntities" TagPrefix="tp" %>
-<%@ Register Src="~/Controls/AttachmentComment.ascx" TagName="AttachmentComment"
-	TagPrefix="tp" %>
+<%@ Register Src="~/Controls/AttachmentComment.ascx" TagName="AttachmentComment" TagPrefix="tp" %>
+<%@ Register Namespace="Hd.Web.Controls" TagPrefix="tp" Assembly="Hd.Web" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="tabs" runat="server">
 	<div id="tabs">
 		<div class="selectedTab" style="float: left" runat="server" id="div2">
@@ -45,7 +44,7 @@
 							<asp:FormView ID="requestDetails" runat="server" DataSourceID="RequestSource" DataKeyNames="RequestID"
 								DefaultMode="ReadOnly" Width="100%">
 								<ItemTemplate>
-									<asp:Label ID="lblDescription" runat="server" Text='<%# Bind("Description") %>' /><br />
+									<tp:DescriptionLabel ID="lblDescription" runat="server" Text='<%# Eval("Description") %>' /><br />
 									<br />
 								</ItemTemplate>
 							</asp:FormView>
