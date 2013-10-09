@@ -54,6 +54,9 @@ public partial class TpLogin : PersisterBasePage
 
 	private void PerformLogin(Requester requester)
 	{
+		Response.Cookies.Remove(Globals.LOGIN_COOKIE);
+		Response.Cookies.Remove(Globals.PASSWORD_COOKIE);
+
 		DataPortal.Instance.ResetCachedValue(typeof(Requester), requester.ID);
 
 		FormsAuthentication.RedirectFromLoginPage(requester.ID.GetValueOrDefault().ToString(CultureInfo.InvariantCulture), RememberMe.Checked);

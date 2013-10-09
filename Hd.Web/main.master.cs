@@ -1,10 +1,10 @@
 // 
-// Copyright (c) 2005-2011 TargetProcess. All rights reserved.
+// Copyright (c) 2005-2013 TargetProcess. All rights reserved.
 // TargetProcess proprietary/confidential. Use is subject to license terms. Redistribution of this file is strictly forbidden.
 // 
+
 using System;
 using System.Text;
-using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -60,10 +60,6 @@ public partial class main : MasterPage
 
 	protected void loginStatus_LoggingOut(object sender, LoginCancelEventArgs e)
 	{
-		if(Response.Cookies[Globals.PASSWORD_COOKIE] != null)
-		{
-			Response.Cookies.Set(new HttpCookie(Globals.PASSWORD_COOKIE, string.Empty));
-		}
 		Session.Clear();
 		Globals.IsLogOut = false;
 		FormsAuthentication.RedirectToLoginPage();
