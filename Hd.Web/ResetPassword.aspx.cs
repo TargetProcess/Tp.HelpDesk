@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Web.UI;
 using Hd.Portal;
 using Hd.Portal.Entities.PasswordRecovery;
 using Hd.Web.Extensions;

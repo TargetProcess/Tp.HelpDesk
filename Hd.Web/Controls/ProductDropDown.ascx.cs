@@ -19,7 +19,7 @@ namespace Hd.Web.Controls
 
 			if (_projectId.HasValue && lstProductList.Items.FindByValue(_projectId.ToString()) == null)
 			{
-				lstProductList.Items.Add(new ListItem("", _projectId.ToString()));
+				lstProductList.Items.Add(new ListItem(string.Empty, _projectId.ToString()));
 				Hide();
 			}
 			lstProductList.SelectedValue = _projectId.ToString();

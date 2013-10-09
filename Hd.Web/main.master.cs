@@ -62,8 +62,8 @@ public partial class main : MasterPage
 	{
 		if(Response.Cookies[Globals.PASSWORD_COOKIE] != null)
 		{
-			Response.Cookies.Set(new HttpCookie(Globals.PASSWORD_COOKIE, ""));
-		}		
+			Response.Cookies.Set(new HttpCookie(Globals.PASSWORD_COOKIE, string.Empty));
+		}
 		Session.Clear();
 		Globals.IsLogOut = false;
 		FormsAuthentication.RedirectToLoginPage();

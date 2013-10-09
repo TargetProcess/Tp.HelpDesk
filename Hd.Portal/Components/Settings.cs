@@ -74,7 +74,7 @@ namespace Hd.Portal.Components
 
 				if (!string.IsNullOrEmpty(url))
 				{
-					url = url.TrimEnd(new char[] {'/', '\\'});
+					url = url.TrimEnd(new[] {'/', '\\'});
 				}
 
 				return url;

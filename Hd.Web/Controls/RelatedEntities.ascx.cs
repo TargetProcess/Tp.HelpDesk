@@ -15,5 +15,4 @@ public partial class Controls_RelatedEntities : UserControl, ITabControl
 		grid.DataSource = request.RelatedEntities;
 		grid.DataBind();
 	}
-
 }

@@ -5,7 +5,6 @@ using System.Web.UI.WebControls.WebParts;
 using Hd.Portal;
 using Hd.Portal.Components;
 using Hd.Portal.Components.LastActionProcessor;
-using Hd.Web.Extensions.Components;
 using log4net;
 
 namespace Hd.Web.Extensions

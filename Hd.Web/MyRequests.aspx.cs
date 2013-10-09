@@ -26,8 +26,8 @@ public partial class MyRequests : PersisterBasePage
 
 	protected void Page_Load(object sender, EventArgs e)
 	{
-		if(Requester.IsLoggedAsAnonymous)			
-			Response.Redirect( "~/Default.aspx" );
+		if(Requester.IsLoggedAsAnonymous)
+			Response.Redirect("~/Default.aspx");
 
 		var manager = ScriptManager.GetCurrent(this);
 		manager.RegisterAsyncPostBackControl(requesterController);
