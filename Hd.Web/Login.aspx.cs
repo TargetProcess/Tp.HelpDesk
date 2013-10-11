@@ -1,8 +1,10 @@
 // 
-// Copyright (c) 2005-2011 TargetProcess. All rights reserved.
+// Copyright (c) 2005-2013 TargetProcess. All rights reserved.
 // TargetProcess proprietary/confidential. Use is subject to license terms. Redistribution of this file is strictly forbidden.
 // 
+
 using System;
+using System.Globalization;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI.WebControls;
@@ -13,14 +15,12 @@ using Hd.Web.Extensions.Components;
 
 public partial class TpLogin : PersisterBasePage
 {
-	private bool _isAutoLogin;
-
 	public override bool IsLoginPage
 	{
 		get { return true; }
 	}
 
-	protected override void OnInit( EventArgs e )
+	protected override void OnInit(EventArgs e)
 	{
 		base.OnInit(e);
 		btnLoginAsGuest.Visible = Settings.IsPublicMode;
@@ -36,20 +36,13 @@ public partial class TpLogin : PersisterBasePage
 	private void TryLoginAnonymously()
 	{
 		if(Settings.IsPublicMode)
-			FormsAuthentication.RedirectFromLoginPage( Requester.ANONYMOUS_USER_ID.ToString(), false );			
+			FormsAuthentication.RedirectFromLoginPage(Requester.ANONYMOUS_USER_ID.ToString(CultureInfo.InvariantCulture), false);
 	}
-
 
 	private void TryAutoLogin()
 	{
-		HttpCookie loginCookie = Request.Cookies.Get(Globals.LOGIN_COOKIE);
-		HttpCookie passwordCookie = Request.Cookies.Get(Globals.PASSWORD_COOKIE);
-
 		if (IsPostBack)
 			return;
-
-		if (loginCookie != null)
-			UserName.Text = loginCookie.Value;
 
 		if (Globals.IsLogOut || Requester.IsLoggedAsAnonymous)
 		{
@@ -57,59 +50,45 @@ public partial class TpLogin : PersisterBasePage
 			return;
 		}
 
-		if (loginCookie != null && passwordCookie != null && passwordCookie.Value != string.Empty
-		    && Requester.Validate(loginCookie.Value, passwordCookie.Value))
-		{
-			_isAutoLogin = true;
-			Requester user = Requester.FindByEmail(loginCookie.Value);
-			int? userID = user.ID;
-			PerformLogin(userID);
-			return;
-		}
-
 		TryLoginAnonymously();
 	}
 
-	private void PerformLogin(int? userID)
+	private void PerformLogin(Requester requester)
 	{
-		DataPortal.Instance.ResetCachedValue(typeof (Requester), userID);
+		Response.Cookies.Remove(Globals.LOGIN_COOKIE);
+		Response.Cookies.Remove(Globals.PASSWORD_COOKIE);
 
-		FormsAuthentication.RedirectFromLoginPage(userID.Value.ToString(), false);
+		DataPortal.Instance.ResetCachedValue(typeof(Requester), requester.ID);
+
+		FormsAuthentication.RedirectFromLoginPage(requester.ID.GetValueOrDefault().ToString(CultureInfo.InvariantCulture), RememberMe.Checked);
+
+		if (RememberMe.Checked)
+		{
+			var authCookie = HttpContext.Current.Request.Cookies.Get(FormsAuthentication.FormsCookieName);
+			if (authCookie != null)
+			{
+				authCookie.Expires = authCookie.Expires.AddMinutes(20130);
+			}
+		}
 
 		Globals.IsLogOut = false;
-
-		if (!_isAutoLogin)
-			CreateCookieForLogin();
-	}
-
-	private void CreateCookieForLogin()
-	{
-		CreateCookie(Globals.LOGIN_COOKIE, UserName.Text);
-		CreateCookie(Globals.PASSWORD_COOKIE, RememberMe.Checked ? Password.Text : string.Empty);
-	}
-
-	private void CreateCookie(string cookieName, string cookieValue)
-	{
-		var cookie = new HttpCookie(cookieName, cookieValue) {Expires = DateTime.Now.AddYears(1)};
-		Response.Cookies.Add(cookie);
 	}
 
 	protected void OnLogin(object sender, CommandEventArgs e)
 	{
 		switch (e.CommandName)
-	{
+		{
 			case "LoginAsGuest":
 				Response.Redirect("~/");
 				break;
 			case "Login":
-				if( Requester.Validate( UserName.Text, Password.Text ) )
-		{
-					Requester user = Requester.FindByEmail( UserName.Text );
-			int? userId = user.ID;
-					PerformLogin( userId );
-		}
-		else
-			FailureText.Text = "Login failed. Most likely you have entered incorrect login or password.";
+				if(Requester.Validate(UserName.Text, Password.Text))
+				{
+					Requester user = Requester.FindByEmail(UserName.Text);
+					PerformLogin(user);
+				}
+				else
+					FailureText.Text = "Login failed. Most likely you have entered incorrect login or password.";
 				break;
 		}
 	}

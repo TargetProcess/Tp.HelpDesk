@@ -1,3 +1,8 @@
+// 
+// Copyright (c) 2005-2013 TargetProcess. All rights reserved.
+// TargetProcess proprietary/confidential. Use is subject to license terms. Redistribution of this file is strictly forbidden.
+// 
+
 using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -26,8 +31,8 @@ public partial class MyRequests : PersisterBasePage
 
 	protected void Page_Load(object sender, EventArgs e)
 	{
-		if(Requester.IsLoggedAsAnonymous)			
-			Response.Redirect( "~/Default.aspx" );
+		if(Requester.IsLoggedAsAnonymous)
+			Response.Redirect("~/Default.aspx");
 
 		var manager = ScriptManager.GetCurrent(this);
 		manager.RegisterAsyncPostBackControl(requesterController);

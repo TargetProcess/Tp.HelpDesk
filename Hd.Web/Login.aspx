@@ -127,7 +127,7 @@
 												<td colspan="2">
 <b>User Password Link Sent</b>
 <br/>
-You have requested a link be sent to your email address  which will enable you to reset your password. Please allow up to 15 minutes for it to arrive. 
+You have requested a link be sent to your email address  which will enable you to reset your password. Please allow up to 15 minutes for it to arrive.
 	
 												</td>
 											</tr>

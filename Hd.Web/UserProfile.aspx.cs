@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections;
-using System.Configuration;
-using System.Data;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
+﻿// 
+// Copyright (c) 2005-2013 TargetProcess. All rights reserved.
+// TargetProcess proprietary/confidential. Use is subject to license terms. Redistribution of this file is strictly forbidden.
+// 
+
+using System;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
 using Hd.Portal;
 using Hd.Portal.Components.LastActionProcessor;
 using Hd.Web.Extensions;
 
 public partial class UserProfile : PersisterBasePage
 {
-
 	protected override void OnLoad(EventArgs e)
 	{
 		if (Requester.IsLoggedAsAnonymous)
@@ -23,14 +19,11 @@ public partial class UserProfile : PersisterBasePage
 	}
 	protected void OnValidateEmail(object source, ServerValidateEventArgs args)
 	{
-	 	if (string.IsNullOrEmpty(args.Value))
-			return;
-
-		args.IsValid = Requester.Logged.CanChangeEmailTo(args.Value); 
+		if (!string.IsNullOrEmpty(args.Value))
+		{
+			args.IsValid = Requester.Logged.CanChangeEmailTo(args.Value);
+		}
 	}
-
-
-	
 
 	protected void OnUpdatedItem(object sender, FormViewUpdatedEventArgs e)
 	{
@@ -48,7 +41,6 @@ public partial class UserProfile : PersisterBasePage
 			ActionProcessor.ReplaceLastAction(exception.Message);
 		}
 		Response.Redirect(Page.Request.Url.AbsolutePath);
-
 	}
 
 	protected void requesterSource_SourceObject(object sender, TpObjectDataSourceEventArgs e)
@@ -57,8 +49,5 @@ public partial class UserProfile : PersisterBasePage
 			e.BusinessObject = Requester.Logged;
 		else
 			e.Cancel = true;
-
 	}
-
- 
 }
