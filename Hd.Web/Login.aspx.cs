@@ -5,6 +5,7 @@
 
 using System;
 using System.Globalization;
+using System.Web;
 using System.Web.Security;
 using System.Web.UI.WebControls;
 using Hd.Portal;
@@ -19,7 +20,7 @@ public partial class TpLogin : PersisterBasePage
 		get { return true; }
 	}
 
-	protected override void OnInit( EventArgs e )
+	protected override void OnInit(EventArgs e)
 	{
 		base.OnInit(e);
 		btnLoginAsGuest.Visible = Settings.IsPublicMode;
@@ -61,6 +62,15 @@ public partial class TpLogin : PersisterBasePage
 
 		FormsAuthentication.RedirectFromLoginPage(requester.ID.GetValueOrDefault().ToString(CultureInfo.InvariantCulture), RememberMe.Checked);
 
+		if (RememberMe.Checked)
+		{
+			var authCookie = HttpContext.Current.Request.Cookies.Get(FormsAuthentication.FormsCookieName);
+			if (authCookie != null)
+			{
+				authCookie.Expires = authCookie.Expires.AddMinutes(20130);
+			}
+		}
+
 		Globals.IsLogOut = false;
 	}
 
@@ -74,7 +84,7 @@ public partial class TpLogin : PersisterBasePage
 			case "Login":
 				if(Requester.Validate(UserName.Text, Password.Text))
 				{
-					Requester user = Requester.FindByEmail( UserName.Text );
+					Requester user = Requester.FindByEmail(UserName.Text);
 					PerformLogin(user);
 				}
 				else

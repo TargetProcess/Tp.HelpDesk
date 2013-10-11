@@ -1,3 +1,8 @@
+// 
+// Copyright (c) 2005-2013 TargetProcess. All rights reserved.
+// TargetProcess proprietary/confidential. Use is subject to license terms. Redistribution of this file is strictly forbidden.
+// 
+
 using System;
 using System.Collections.Generic;
 using System.Web.UI;
@@ -45,7 +50,7 @@ public partial class Controls_AttachmentComment : UserControl, ITabControl
 
 	private void LoadAttachments(object argument)
 	{
-		string hql = "from Attachment as a where a.General.GeneralID = ?";
+		const string hql = "from Attachment as a where a.General.GeneralID = ?";
 		List<Attachment> list = DataPortal.Instance.Retrieve<Attachment>(hql, argument);
 		lstAttachment.DataSource = list;
 		lstAttachment.DataBind();
