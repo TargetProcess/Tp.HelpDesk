@@ -1,3 +1,8 @@
+// 
+// Copyright (c) 2005-2013 TargetProcess. All rights reserved.
+// TargetProcess proprietary/confidential. Use is subject to license terms. Redistribution of this file is strictly forbidden.
+// 
+
 using System;
 using System.Web.Security;
 using System.Web.UI;
@@ -5,7 +10,6 @@ using System.Web.UI.WebControls.WebParts;
 using Hd.Portal;
 using Hd.Portal.Components;
 using Hd.Portal.Components.LastActionProcessor;
-using Hd.Web.Extensions.Components;
 using log4net;
 
 namespace Hd.Web.Extensions

@@ -1,17 +1,16 @@
 // 
-// Copyright (c) 2005-2008 TargetProcess. All rights reserved.
+// Copyright (c) 2005-2013 TargetProcess. All rights reserved.
 // TargetProcess proprietary/confidential. Use is subject to license terms. Redistribution of this file is strictly forbidden.
 // 
-using System.Web;
 
 using Hd.Portal.Components;
 using Hd.Portal.Components.LastActionProcessor;
-
 using log4net;
-
 using Tp.AuthenticationServiceProxy;
 using Tp.EntityStateServiceProxy;
 using Tp.RequesterServiceProxy;
+using System.Globalization;
+using System.Web;
 
 namespace Hd.Portal
 {
@@ -49,10 +48,8 @@ namespace Hd.Portal
 		{
 			get
 			{
-				return Settings.IsPublicMode
-						? Logged == null && HttpContext.Current.User.Identity.Name == ANONYMOUS_USER_ID.ToString()
-				       	: false;
-			}			
+				return Settings.IsPublicMode && (Logged == null && HttpContext.Current.User.Identity.Name == ANONYMOUS_USER_ID.ToString(CultureInfo.InvariantCulture));
+			}
 		}
 
 		/// <summary>
@@ -62,11 +59,7 @@ namespace Hd.Portal
 		{
 			get
 			{
-				return IsLogged
-				       	? Logged.UserID
-				       	: (IsLoggedAsAnonymous
-							? (int?)ANONYMOUS_USER_ID
-				       	   	: null);
+				return IsLogged ? Logged.UserID : (IsLoggedAsAnonymous ? (int?)ANONYMOUS_USER_ID : null);
 			}
 		}
 
@@ -94,7 +87,7 @@ namespace Hd.Portal
 		}
 
 		public bool CanChangeEmailTo(string email)
-		{   
+		{
 			RequesterDTO dto = FindByEmail(email);
 			if (dto == null)
 				return true;

@@ -1,3 +1,8 @@
+// 
+// Copyright (c) 2005-2013 TargetProcess. All rights reserved.
+// TargetProcess proprietary/confidential. Use is subject to license terms. Redistribution of this file is strictly forbidden.
+// 
+
 using System;
 using System.Collections.Generic;
 using System.Web.UI;
@@ -37,7 +42,7 @@ public partial class Controls_AttachmentComment : UserControl, ITabControl
 
 	private void LoadComments(object argument)
 	{
-		string hql = "from Comment as c where c.General.GeneralID = ? and Description <> 'DELETED'";
+		const string hql = "from Comment as c where c.General.GeneralID = ? and Description <> 'DELETED'";
 		List<Comment> list = DataPortal.Instance.Retrieve<Comment>(hql, argument);
 		lstComments.DataSource = list;
 		lstComments.DataBind();
@@ -45,7 +50,7 @@ public partial class Controls_AttachmentComment : UserControl, ITabControl
 
 	private void LoadAttachments(object argument)
 	{
-		string hql = "from Attachment as a where a.General.GeneralID = ?";
+		const string hql = "from Attachment as a where a.General.GeneralID = ?";
 		List<Attachment> list = DataPortal.Instance.Retrieve<Attachment>(hql, argument);
 		lstAttachment.DataSource = list;
 		lstAttachment.DataBind();
@@ -53,14 +58,14 @@ public partial class Controls_AttachmentComment : UserControl, ITabControl
 
 	protected void SaveReply(object sender, EventArgs eventArgs)
 	{
-		int? commentID = hdnCommentID.Value == string.Empty ? null : (int?)Int32.Parse(hdnCommentID.Value);
-		int? parentID = hdnParentID.Value == string.Empty ? null : (int?)Int32.Parse(hdnParentID.Value);
+		int? commentId = hdnCommentID.Value == string.Empty ? null : (int?)Int32.Parse(hdnCommentID.Value);
+		int? parentId = hdnParentID.Value == string.Empty ? null : (int?)Int32.Parse(hdnParentID.Value);
 
-		Comment comment = Comment.RetrieveOrCreate(commentID);
+		Comment comment = Comment.RetrieveOrCreate(commentId);
 		comment.GeneralID = GeneralID;
 
-		if (parentID.HasValue)
-			comment.ParentID = parentID;
+		if (parentId.HasValue)
+			comment.ParentID = parentId;
 
 		comment.Description = txtComment.Text;
 
@@ -74,7 +79,6 @@ public partial class Controls_AttachmentComment : UserControl, ITabControl
 
 		updPanel.Update();
 	}
-
 
 	protected void DeleteComment(string argument)
 	{
