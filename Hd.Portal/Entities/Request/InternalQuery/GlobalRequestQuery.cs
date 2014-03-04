@@ -1,20 +1,18 @@
-﻿//  
-// Copyright (c) 2005-2009 TargetProcess. All rights reserved.
+﻿// 
+// Copyright (c) 2005-2013 TargetProcess. All rights reserved.
 // TargetProcess proprietary/confidential. Use is subject to license terms. Redistribution of this file is strictly forbidden.
 // 
 using Hd.QueryExtensions;
 
 namespace Hd.Portal
 {
-	internal class GlobalRequestQuery : BusinessQuery
+	internal class GlobalRequestQuery : RequestQueryBase
 	{
 		public override SelectQuery InitialQuery
 		{
 			get
 			{
-				var selectQuery = new SelectQuery(typeof (Request));
-				selectQuery.OrderByTerms.Clear();
-				selectQuery.AddOrderBy("CreateDate", OrderByDirection.Descending);
+				var selectQuery = base.InitialQuery;
 
 				selectQuery.AddCompare("ParentProject.IsProduct", new Parameter(true), CompareOperator.Equal);
 				int requesterID = Requester.LoggedUserID.Value;

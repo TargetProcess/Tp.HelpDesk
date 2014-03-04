@@ -103,6 +103,7 @@
     <Compile Include="Entities\Request\InternalQuery\RequestDefaultQuery.cs" />
     <Compile Include="Entities\Request\IdeasQuery.cs" />
     <Compile Include="Entities\Request\InternalQuery\RequesterRequestQuery.cs" />
+    <Compile Include="Entities\Request\InternalQuery\RequestQueryBase.cs" />
     <Compile Include="Entities\Request\InternalQuery\RequestToViewQuery.cs" />
     <Compile Include="Entities\Request\IssuesQuery.cs" />
     <Compile Include="Entities\Request\OwnerRequestQuery.cs" />

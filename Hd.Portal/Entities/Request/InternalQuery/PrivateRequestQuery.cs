@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2005-2008 TargetProcess. All rights reserved.
+// Copyright (c) 2005-2013 TargetProcess. All rights reserved.
 // TargetProcess proprietary/confidential. Use is subject to license terms. Redistribution of this file is strictly forbidden.
 // 
 
@@ -7,15 +7,14 @@ using Hd.QueryExtensions;
 
 namespace Hd.Portal
 {
-	internal class PrivateRequestQuery : BusinessQuery
+	internal class PrivateRequestQuery : RequestQueryBase
 	{
 		public override SelectQuery InitialQuery
 		{
 			get
 			{
-				var selectQuery = new SelectQuery(typeof (Request));
-				selectQuery.OrderByTerms.Clear();
-				selectQuery.AddOrderBy("CreateDate", OrderByDirection.Descending);
+				var selectQuery = base.InitialQuery;
+
 				var requesterID = Requester.LoggedUserID.Value;
 				var term = WhereTerm.CreateIn(SqlExpression.Field("RequestID"),
 				                              string.Format(
