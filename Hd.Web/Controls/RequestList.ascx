@@ -2,7 +2,7 @@
 <%@ Import Namespace="Hd.Portal"%>
 
 <tp:VoteManager runat="server" ID="voteManager" />
-<asp:GridView ID="requestListing" CellPadding="3" CellSpacing="0" CssClass="generalTable"
+<tp:VoteHolderGridView ID="requestListing" CellPadding="3" CellSpacing="0" CssClass="generalTable"
     runat="server" AutoGenerateColumns="False" GridLines="None" AllowSorting="True"
     AllowPaging="false" PageSize="10" DataKeyNames="RequestID" ShowFooter="true">
     <HeaderStyle CssClass="headRow" />
@@ -11,7 +11,7 @@
         <asp:TemplateField HeaderText="Votes" SortExpression="size(request.Requesters)">
             <ItemTemplate>
                 <tp:Vote VoteImage="~/img/up.gif" HorizontalAlign="Center" CssVotesCount="votesCount"
-                    CssVoteLabel="voteLabel" CssClass="votePanel" RequestID='<%# Eval("ID") %>' IsPossibleToVote='<%# Requester.IsLogged ? !Hd.Portal.Request.IsRequesterAttached((int)Eval("ID"),  Requester.LoggedUserID.Value ) : false %>'
+                    CssVoteLabel="voteLabel" CssClass="votePanel" RequestID='<%# Eval("ID") %>' IsPossibleToVote='<%# VoteHolderGridView.IsPossibleToVote((int)Eval("ID")) %>'
                     runat="server" ID="vote" Count='<%# Eval("RequestersCount") %>'>
                 </tp:Vote>
             </ItemTemplate>
@@ -58,4 +58,4 @@
     <EmptyDataTemplate>
         <b>No requests found</b>
     </EmptyDataTemplate>
-</asp:GridView>
+</tp:VoteHolderGridView>

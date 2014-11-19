@@ -10,7 +10,7 @@ using Tp.RequestServiceProxy;
 using Tp.Web.Extensions.Components;
 using StringUtils=Hd.Portal.Components.StringUtils;
 
-public partial class SearchPage : PersisterBasePage
+public partial class SearchPage : PersisterBasePage, IVoteHolderGridViewContainer
 {
 	protected override void OnInit(EventArgs e)
 	{
@@ -47,5 +47,9 @@ public partial class SearchPage : PersisterBasePage
 		string pattern = StringUtils.TrimToNull(Request.QueryString["SearchString"]);
 
 		return WordsHighlighter.Highlight(valueToHighlight, pattern);
+	}
+
+	public VoteHolderGridView VoteHolderGridView {
+		get { return allRequestListing; }
 	}
 }

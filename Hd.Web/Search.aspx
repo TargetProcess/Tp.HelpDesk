@@ -9,7 +9,7 @@
             Url="MyRequests.aspx" />
         <tp:RequestScopeTab ID="RequestScopeTab2" IsPublic="true" Scope="Global" CssClass="tab" runat="server" Url="Issues.aspx"
             Text="Issues" />
-		<tp:RequestScopeTab ID="RequestScopeTab4" CssClass="tab" IsPublic="true" Scope="Global" runat="server" Url="Ideas.aspx" Text="Ideas" />
+        <tp:RequestScopeTab ID="RequestScopeTab4" CssClass="tab" IsPublic="true" Scope="Global" runat="server" Url="Ideas.aspx" Text="Ideas" />
         <tp:RequestScopeTab ID="RequestScopeTab3" Scope="Private" CssClass="clearTab" runat="server" Url="Request.aspx"
             Text="Add Request" />
     </div>
@@ -20,7 +20,7 @@
         <ContentTemplate>
             <tp:GridController ID="controller" runat="server" GridID="allRequestListing" QueryType="Hd.Portal.AllRequestQuery"
                 EntityType="Hd.Portal.Request, Hd.Portal" PagerID="pager" />
-            <asp:GridView ID="allRequestListing" CellPadding="3" CellSpacing="0" CssClass="generalTable"
+            <tp:VoteHolderGridView ID="allRequestListing" CellPadding="3" CellSpacing="0" CssClass="generalTable"
                 runat="server" AutoGenerateColumns="False" GridLines="None" AllowSorting="True"
                 AllowPaging="false" PageSize="10" DataKeyNames="RequestID" ShowFooter="true">
                 <HeaderStyle CssClass="headRow" />
@@ -29,7 +29,7 @@
                     <asp:TemplateField ItemStyle-Wrap="false">
                         <ItemTemplate>
                             <tp:Vote VoteImage="~/img/up.gif" HorizontalAlign="Center" CssVotesCount="votesCount"
-                                CssVoteLabel="voteLabel" CssClass="votePanel" RequestID='<%# Eval("ID") %>' IsPossibleToVote='<%# Requester.IsLogged ? !Hd.Portal.Request.IsRequesterAttached((int)Eval("ID"), Requester.LoggedUserID.Value) : false %>'
+                                CssVoteLabel="voteLabel" CssClass="votePanel" RequestID='<%# Eval("ID") %>' IsPossibleToVote='<%# VoteHolderGridView.IsPossibleToVote((int)Eval("ID")) %>'
                                 runat="server" ID="vote" Count='<%# Eval("RequestersCount") %>'>
                             </tp:Vote>
                         </ItemTemplate>
@@ -82,7 +82,7 @@
                 <EmptyDataTemplate>
                     <b>No requests found</b>
                 </EmptyDataTemplate>
-            </asp:GridView>
+            </tp:VoteHolderGridView>
             <div style="text-align: right; width: 97%; margin: 0 1%;">
                 <tp:Pager ID="pager" runat="server" Width="100%" />
             </div>

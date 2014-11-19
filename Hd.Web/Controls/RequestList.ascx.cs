@@ -12,7 +12,7 @@ using Tp.RequestServiceProxy;
 
 namespace Hd.Web.Controls
 {
-	public partial class RequestList : UserControl
+	public partial class RequestList : UserControl, IVoteHolderGridViewContainer
 	{
 		protected override void OnInit(EventArgs e)
 		{
@@ -31,6 +31,10 @@ namespace Hd.Web.Controls
 				dto.RequesterID = Requester.Logged.ID;
 				Portal.Request.AddRequester(args.RequestID.Value, dto);
 			}
+		}
+
+		public VoteHolderGridView VoteHolderGridView {
+			get { return requestListing; }
 		}
 	}
 }

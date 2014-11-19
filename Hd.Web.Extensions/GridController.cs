@@ -229,6 +229,11 @@ namespace Hd.Web.Extensions
 				else throw new Exception(string.Format("GridView '{0}' not found", _gridId));
 			}
 
+			if (_grid is VoteHolderGridView)
+			{
+				GridBindingStart += ((VoteHolderGridView) _grid).OnGridBindingStart;
+			}
+
 			_businessQuery = BusinessQuery.CreateInstance(_queryType);
 
 			if (!ReferenceEquals(QueryCreated, null))
