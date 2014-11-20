@@ -1,13 +1,14 @@
 using System;
 using System.Text.RegularExpressions;
 using System.Web;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace Hd.Web.Controls
 {
 	public class DescriptionLabel : Label
 	{
-		protected override void Render(System.Web.UI.HtmlTextWriter writer)
+		protected override void Render(HtmlTextWriter writer)
 		{
 			Text = VirtualizeImgMappedPaths(Text);
 			base.Render(writer);

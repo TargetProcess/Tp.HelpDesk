@@ -10,14 +10,22 @@ using Hd.Web.Extensions;
 
 public partial class Controls_RelatedEntities : UserControl, ITabControl
 {
-	public void LoadContent(object argument)
-	{
-		Request request = Hd.Portal.Request.Retrieve(argument as int?);
+    public void LoadContent(object argument)
+    {
+        try
+        {
+            Request request = Hd.Portal.Request.Retrieve(argument as int?);
 
-		if (request == null)
-			throw new Exception("The request could not be found");
+            if (request == null)
+                throw new Exception("The request could not be found");
 
-		grid.DataSource = request.RelatedEntities;
-		grid.DataBind();
-	}
+            grid.DataSource = request.RelatedEntities;
+            grid.DataBind();
+        }
+        catch (Exception)
+        {
+            // ignore, FIX for a bug introduced by UI overhaul when
+            // dynamic tab for Related Entities was removed.
+        }
+    }
 }

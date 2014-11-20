@@ -1,0 +1,1 @@
+<p>You may:</p><ul><li>Post requests/ideas/issues</li><li>Vote for requests</li><li>View your requests with statuses</li><li>Discuss requests via comments threads</li><li>Attach files to requests</li><li>View related bugs and user stories</li></ul>

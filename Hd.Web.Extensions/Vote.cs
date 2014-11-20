@@ -2,6 +2,7 @@
 
 using System;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 #endregion
@@ -48,7 +49,7 @@ namespace Hd.Web.Extensions
         {
             if (page == null)
                 throw new ArgumentNullException("page");
-            return (page.Items[typeof (VoteManager)] as VoteManager);
+            return (page.Items[typeof(VoteManager)] as VoteManager);
         }
 
         protected override void OnInit(EventArgs e)
@@ -57,7 +58,7 @@ namespace Hd.Web.Extensions
             if (GetCurrent(Page) != null)
                 throw new InvalidOperationException("More than one VoteManager objects found");
 
-            Page.Items[typeof (VoteManager)] = this;
+            Page.Items[typeof(VoteManager)] = this;
             ScriptManager.GetCurrent(Page).RegisterAsyncPostBackControl(this);
         }
     }
@@ -86,6 +87,7 @@ namespace Hd.Web.Extensions
         protected override void OnInit(EventArgs e)
         {
             base.OnInit(e);
+            _voteButton.CssClass = "editLink voter";
             _voteButton.Text = "vote";
             _voteButton.ID = "uxAddVote";
             _votesCountPanel.CssClass = CssVotesCount;
@@ -107,12 +109,14 @@ namespace Hd.Web.Extensions
         {
             base.CreateChildControls();
             _votesCountPanel.Controls.Add(new LiteralControl(Count.ToString()));
-            _voteLabelPanel.Controls.Add(new LiteralControl("votes"));
-            _voteButtonPanel.Controls.Add(_voteButton);
-            _voteButtonPanel.Controls.Add(new LiteralControl("&nbsp;"));
-            _voteButtonPanel.Controls.Add(_voteButtonImage);
+            //_voteButtonPanel.Controls.Add(_voteButtonImage);
             Controls.Add(_votesCountPanel);
-            Controls.Add(_voteLabelPanel);
+            if (IsPossibleToVote)
+            {
+                Controls.Add(new HtmlGenericControl("i"));
+                Controls.Add(_voteButton);
+            }
+            //Controls.Add(_voteLabelPanel);
             Controls.Add(_voteButtonPanel);
         }
     }

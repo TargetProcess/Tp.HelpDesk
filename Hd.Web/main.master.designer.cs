@@ -30,6 +30,33 @@ public partial class main {
     protected global::System.Web.UI.ScriptManager sm;
     
     /// <summary>
+    /// tabs control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.ContentPlaceHolder tabs;
+    
+    /// <summary>
+    /// litCurrentProject control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Literal litCurrentProject;
+    
+    /// <summary>
+    /// litProjects control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Literal litProjects;
+    
+    /// <summary>
     /// spanUsername control.
     /// </summary>
     /// <remarks>
@@ -66,31 +93,13 @@ public partial class main {
     protected global::Hd.Web.Extensions.TpLoginStatus loginStatus;
     
     /// <summary>
-    /// tabs control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.ContentPlaceHolder tabs;
-    
-    /// <summary>
     /// tblSearch control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.HtmlControls.HtmlTable tblSearch;
-    
-    /// <summary>
-    /// RequiredFieldValidator1 control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+    protected global::System.Web.UI.HtmlControls.HtmlGenericControl tblSearch;
     
     /// <summary>
     /// txtSearch control.
@@ -111,6 +120,24 @@ public partial class main {
     protected global::System.Web.UI.WebControls.Button btnSearch;
     
     /// <summary>
+    /// RequiredFieldValidator1 control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+    
+    /// <summary>
+    /// plcContent control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.ContentPlaceHolder plcContent;
+    
+    /// <summary>
     /// pnlLastAction control.
     /// </summary>
     /// <remarks>
@@ -129,11 +156,11 @@ public partial class main {
     protected global::Hd.Web.Extensions.LastActionLabel lstA;
     
     /// <summary>
-    /// plcContent control.
+    /// lnkDarkTheme control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.ContentPlaceHolder plcContent;
+    protected global::System.Web.UI.WebControls.LinkButton lnkDarkTheme;
 }

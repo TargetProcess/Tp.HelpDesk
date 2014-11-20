@@ -69,7 +69,7 @@ namespace Hd.Web.Extensions
             string fileUploadIds = "var fileUploads = new Array();var fileUploadNames = new Array();";
             string fileDescriptions = "var fileDescriptions = new Array();var fileDescriptionsText = new Array();";
 
-            Controls.Add(new LiteralControl("<br />"));
+            // Controls.Add(new LiteralControl("<br />"));
             for (int i = 0; i < MaxCountOfAttachments; i ++)
             {
                 var fileUpload = new FileUpload {ID = "fileUpload" + i};
@@ -79,7 +79,7 @@ namespace Hd.Web.Extensions
                     string.Format("fileUploads[{0}] = '{1}';fileUploadNames[{0}] = '{2}';", i, fileUpload.ClientID,
                                   fileUpload.UniqueID);
 
-                var attachmentDescription = new TextBox {ID = "fileDescription" + i};
+                var attachmentDescription = new TextBox {ID = "fileDescription" + i, CssClass = "form-control input-sm"};
             	attachmentDescription.Style.Add("display", "none");
                 Controls.Add(attachmentDescription);
                 fileDescriptions +=
@@ -93,11 +93,12 @@ namespace Hd.Web.Extensions
             var table = new Table();
             var actionRow = new TableRow();
 
-            var cellClip = new TableCell {Width = Unit.Percentage(1), VerticalAlign = VerticalAlign.Middle};
-        	var clipIcon = new ClipIcon();
-            cellClip.Controls.Add(clipIcon);
+            // TODO: Use SVG attachment icon?
+            //var cellClip = new TableCell {Width = Unit.Percentage(1), VerticalAlign = VerticalAlign.Middle};
+            //var clipIcon = new ClipIcon();
+            //cellClip.Controls.Add(clipIcon);
 
-            actionRow.Cells.Add(cellClip);
+            //actionRow.Cells.Add(cellClip);
 
             var cellAddAttachment = new TableCell
                                     	{
@@ -109,7 +110,7 @@ namespace Hd.Web.Extensions
         	var action = new Literal
         	             	{
         	             		Text =
-        	             			"<span id='maximumExceeded'></span><a id='attachments_more' href='javascript:AddAttachment();'>Attach a file</a>"
+                                    "<span id='maximumExceeded'></span><br /><a id='attachments_more' href='javascript:AddAttachment();' class='btn btn-xs'>Attach a file</a>"
         	             	};
         	cellAddAttachment.Controls.Add(action);
 
@@ -120,7 +121,7 @@ namespace Hd.Web.Extensions
             Controls.Add(table);
             Controls.Add(new LiteralControl("<br />"));
 
-            _submitButton = new Button {Text = "Add Attachment(s)", CssClass = "button"};
+            _submitButton = new Button {Text = "Add Attachment(s)", CssClass = "btn btn-xs btn-success"};
         	_submitButton.Style.Add(HtmlTextWriterStyle.Display, "none");
             Controls.Add(_submitButton);
 

@@ -20,10 +20,10 @@ namespace Hd.Web.Extensions
 			BluringEnabled = true;
 			OnFocusScript = string.Empty;
 			OnBlurScript = string.Empty;
-			FocusBackground = "#FFFEBA";
-			BlurBackground = "#FFF";
-			FocusBorderColor = "orange";
-			BlurBorderColor = "#28428B";
+            //FocusBackground = "#FFFEBA";
+            //BlurBackground = "#FFF";
+            //FocusBorderColor = "orange";
+            //BlurBorderColor = "#28428B";
 			CleanTags = true;
 		}
 
@@ -101,13 +101,13 @@ namespace Hd.Web.Extensions
 
 		private void FormTipAndFocus(HtmlTextWriter writer)
 		{
-			CssClass = "input";
+            //CssClass = "input";
 
-			if (BluringEnabled)
-			{
-				Attributes.Add("onfocus", String.Format(FocusBlurStyles, FocusBackground, FocusBorderColor) + ";" + OnFocusScript);
-				Attributes.Add("onblur", String.Format(FocusBlurStyles, BlurBackground, BlurBorderColor) + ";" + OnBlurScript);
-			}
+            //if (BluringEnabled)
+            //{
+            //    Attributes.Add("onfocus", String.Format(FocusBlurStyles, FocusBackground, FocusBorderColor) + ";" + OnFocusScript);
+            //    Attributes.Add("onblur", String.Format(FocusBlurStyles, BlurBackground, BlurBorderColor) + ";" + OnBlurScript);
+            //}
 		}
 
 		private Control FindControl(Control scope, string id, int deep)

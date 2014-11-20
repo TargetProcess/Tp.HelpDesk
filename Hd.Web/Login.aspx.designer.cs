@@ -30,6 +30,15 @@ public partial class TpLogin {
     protected global::System.Web.UI.ScriptManager sm;
     
     /// <summary>
+    /// logoHolder control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.HtmlControls.HtmlGenericControl logoHolder;
+    
+    /// <summary>
     /// mailPanel control.
     /// </summary>
     /// <remarks>
@@ -93,15 +102,6 @@ public partial class TpLogin {
     protected global::System.Web.UI.WebControls.RequiredFieldValidator PasswordRequired;
     
     /// <summary>
-    /// forgotPassword control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.LinkButton forgotPassword;
-    
-    /// <summary>
     /// RememberMe control.
     /// </summary>
     /// <remarks>
@@ -127,6 +127,15 @@ public partial class TpLogin {
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
     protected global::System.Web.UI.WebControls.Button btnLoginAsGuest;
+    
+    /// <summary>
+    /// forgotPassword control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.LinkButton forgotPassword;
     
     /// <summary>
     /// forgotPasswordPanel control.

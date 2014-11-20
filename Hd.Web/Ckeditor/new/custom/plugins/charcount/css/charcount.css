@@ -1,0 +1,16 @@
+.cke_charcount {
+	display:block;
+	/*float:right;*/
+	margin-top:-2px;
+	margin-right:10px;
+	color: #60676A;
+}
+
+.cke_charcount span.cke_charcount_count,
+.cke_charcount span.cke_charcount_limit {
+	font-weight: bold;
+}
+
+.cke_charcount_error span.cke_charcount_count {
+	color: red;
+}

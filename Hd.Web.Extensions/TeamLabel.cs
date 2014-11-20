@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Hd.Portal;
@@ -18,9 +16,12 @@ namespace Hd.Web.Extensions
                 string str = string.Empty;
 
                 foreach (Team team in value)
-                    str += "<b>" + team.ActorName + ":</b> " + team.UserName + "<br/>";
-
-                this._text = str;
+                {
+                    str += "<span class='assignments' "
+                        + "title='" + team.UserName + " (" + team.UserName + ")'>"
+                        + team.UserName + " (" + team.ActorName + ")</span>";
+                }
+                _text = str;
             }
         }
 

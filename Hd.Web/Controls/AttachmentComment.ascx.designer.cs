@@ -99,7 +99,7 @@ public partial class Controls_AttachmentComment {
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::Hd.Web.Extensions.RichEditTextBox txtComment;
+    protected global::CKEditor.NET.CKEditorControl txtComment;
     
     /// <summary>
     /// btnPostComment control.
@@ -109,15 +109,6 @@ public partial class Controls_AttachmentComment {
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
     protected global::System.Web.UI.WebControls.Button btnPostComment;
-    
-    /// <summary>
-    /// A1 control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.HtmlControls.HtmlAnchor A1;
     
     /// <summary>
     /// handler control.

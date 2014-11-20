@@ -4,16 +4,29 @@
 // 
 
 using System;
+using System.Web.UI.WebControls;
 using Hd.Web.Extensions;
 
 namespace Hd.Web
 {
-	public partial class Ideas : PersisterBasePage
-	{
-		protected override void OnLoad(EventArgs e)
-		{
-			base.OnLoad(e);
-			controller.RefreshGrid();
-		}
-	}
+    public partial class Ideas : PersisterBasePage
+    {
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            try
+            {
+                if (Request.QueryString[0].ToLower() == "true" && controller.Grid.SortExpression != "size(request.Requesters)")
+                    controller.Grid.Sort("size(request.Requesters)", SortDirection.Descending);
+
+            }
+            catch (Exception)
+            {
+
+            }
+
+            controller.FilterProject = Session["currentproject"].ToString();
+            controller.RefreshGrid();
+        }
+    }
 }

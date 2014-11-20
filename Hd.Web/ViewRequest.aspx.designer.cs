@@ -12,49 +12,13 @@
 public partial class ViewRequest {
     
     /// <summary>
-    /// div2 control.
+    /// Navbar control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.HtmlControls.HtmlGenericControl div2;
-    
-    /// <summary>
-    /// RequestScopeTab1 control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::Hd.Web.Extensions.RequestScopeTab RequestScopeTab1;
-    
-    /// <summary>
-    /// RequestScopeTab2 control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::Hd.Web.Extensions.RequestScopeTab RequestScopeTab2;
-    
-    /// <summary>
-    /// RequestScopeTab4 control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::Hd.Web.Extensions.RequestScopeTab RequestScopeTab4;
-    
-    /// <summary>
-    /// RequestScopeTab3 control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::Hd.Web.Extensions.RequestScopeTab RequestScopeTab3;
+    protected global::Hd.Web.Controls.Navbar Navbar;
     
     /// <summary>
     /// title control.
@@ -108,7 +72,7 @@ public partial class ViewRequest {
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::Hd.Web.Extensions.DynamicTab entities;
+    protected global::Hd.Web.Extensions.StaticTab entities;
     
     /// <summary>
     /// re control.

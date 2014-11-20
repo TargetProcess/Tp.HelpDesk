@@ -1,0 +1,12 @@
+/* should do with class... */
+img[src=\#] {
+    display: none;
+}
+
+img[src=\#]:before {
+    display: inline-block;
+    background: grey;
+    content: "";
+    width: 20px;
+    height: 20px;
+}

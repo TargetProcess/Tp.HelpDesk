@@ -10,10 +10,11 @@ namespace Hd.Web.Extensions
     {
         private string argument;
         private bool isNumeric = true;
-        private string focusBackground = "#FFFEBA";
-        private string blurBackground = "#FFF";
-        private string focusBorderColor = "orange";
-        private string blurBorderColor = "#28428B";
+        // Obsolete
+        //private string focusBackground = "#FFFEBA";
+        //private string blurBackground = "#FFF";
+        //private string focusBorderColor = "orange";
+        //private string blurBorderColor = "#28428B";
         private bool processTerms = false;
         private bool processTermsForFirst = false;
         private bool makeHumanReadable = false;
@@ -105,18 +106,19 @@ namespace Hd.Web.Extensions
             argument = ViewState["Argument"] as string;
         }
 
-        protected override void Render(HtmlTextWriter writer)
-        {
-            Attributes.Add("onfocus", String.Format(FocusBlurStyles, focusBackground, focusBorderColor));
+        // Obsolete
+        //protected override void Render(HtmlTextWriter writer)
+        //{
+        //    Attributes.Add("onfocus", String.Format(FocusBlurStyles, focusBackground, focusBorderColor));
 
-            Attributes.Add("onblur", String.Format(FocusBlurStyles, blurBackground, blurBorderColor));
-            base.Render(writer);
-        }
+        //    Attributes.Add("onblur", String.Format(FocusBlurStyles, blurBackground, blurBorderColor));
+        //    base.Render(writer);
+        //}
 
-        private string FocusBlurStyles
-        {
-            get { return "this.style.background = '{0}';this.style.border = '1px solid {1}'"; }
-        }
+        //private string FocusBlurStyles
+        //{
+        //    get { return "this.style.background = '{0}';this.style.border = '1px solid {1}'"; }
+        //}
 
         public bool ProcessTerms
         {

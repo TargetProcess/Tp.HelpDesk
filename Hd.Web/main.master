@@ -1,83 +1,124 @@
 <%@ Import Namespace="Hd.Portal.Components" %>
-<%@ Import Namespace="Hd.Portal" %>
 
 <%@ Master Language="C#" AutoEventWireup="true" Inherits="main" CodeBehind="main.master.cs" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html PUBLIC>
+<html>
 <head runat="server">
-	<title></title>
+    <title></title>
+    <link href="Content/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="Ckeditor/" rel="stylesheet" />
 </head>
 <body>
-	<form id="frm" runat="server">
-	<asp:ScriptManager ID="sm" runat="server" ScriptMode="Release" />
-	<div id="top">
-		<div id="title">
-			<span style="margin-left: 35px">
-				<%= Settings.Title %>
-			</span>
-		</div>
-		<div id="logout">
-			<span id="spanUsername" runat="server">
-				<asp:HyperLink runat="server" NavigateUrl="UserProfile.aspx" ID="settingsLink">
-					<asp:Label ID='lblLoginName' runat="server"></asp:Label></asp:HyperLink>
-				| </span>
-			<tp:TpLoginStatus ID="loginStatus" runat="server" OnLoggingOut="loginStatus_LoggingOut" />
-			<br />
-		</div>
-		<br style="clear: both" />
-		<div style="clear: both">
-			<div style="float: left; width: 60%">
-				<asp:ContentPlaceHolder ID="tabs" runat="server">
-				</asp:ContentPlaceHolder>
-			</div>
-			<div style="float: right; width: 30%; margin-right: 15px; text-align: right">
-				<table style="margin-top: 10px" cellpadding="0" cellspacing="0" border="0" align="right"
-					runat="server" id="tblSearch">
-					<tr>
-						<td colspan="2">
-							<asp:RequiredFieldValidator ID="RequiredFieldValidator1" Text="Please enter keyword"
-								runat="server" ValidationGroup="KeywordSearch" ControlToValidate="txtSearch"></asp:RequiredFieldValidator>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<tp:TpTextBox MaxLength="150" ID="txtSearch" OnEnterPressSubmitControl="btnSearch" ValidationGroup="KeywordSearch" CausesValidation="true"
-								runat="server"></tp:TpTextBox>&nbsp;
-						</td>
-						<td>
-							<asp:Button UseSubmitBehavior="true" ID="btnSearch" runat="server" Text="Search requests"
-								CssClass="button" OnClick="btnSearch_Click" ValidationGroup="KeywordSearch" CausesValidation="true" />
-						</td>
-					</tr>
-				</table>
-			</div>
-		</div>
-	</div>
-	<br style="clear: both" />
-	<asp:UpdatePanel ID="pnlLastAction" runat="server">
-		<ContentTemplate>
-			<table width="100%" cellpadding="0" cellspacing="0">
-				<tr>
-					<td>
-						<tp:LastActionLabel ID="lstA" runat="server" />
-					</td>
-				</tr>
-			</table>
-		</ContentTemplate>
-	</asp:UpdatePanel>
-	<div>
-		<asp:ContentPlaceHolder ID="plcContent" runat="server">
-		</asp:ContentPlaceHolder>
-	</div>
-	</form>
-	<div id="footer">
-	</div>
-	<div id="copy">
-		Copyright &copy; 2004-2012 <a href="http://www.targetprocess.com" title="Agile project management software"
-			target="_blank">TargetProcess.</a> All rights reserved.<br />
-	</div>
-	<br />
-	<br />
+    <form id="frm" runat="server">
+    <div class="container-fluid">
+        <asp:ScriptManager ID="sm" runat="server" ScriptMode="Release" />
+        <div class="darkbar2 visible-lg visible-md" id="darkbar2"></div>
+        <div class="row">
+            <%-- Tabs --%>
+            <div class="col-md-1 darkbar">
+                <asp:ContentPlaceHolder runat="server" ID="tabs"></asp:ContentPlaceHolder>
+
+                <!-- WARNING: See code-behind before inserting code here -->
+                        <asp:Literal runat="server" ID="litCurrentProject"></asp:Literal>
+                        
+                        <asp:Literal runat="server" ID="litProjects"></asp:Literal>
+                    
+            </div>
+            <%-- Header --%>
+            <div class="col-md-11 contentarea">
+                <div class="row" id="top">
+                    <div class="col-sm-5">
+                        <div id="title" class="repad">
+                            <h3><%= Settings.Title %></h3>
+                        </div>
+                    </div>
+                    <div class="col-sm-7 text-right">
+                        <div class="repad inline-block">
+                            <div id="logout" class="repad">
+                                <span id="spanUsername" runat="server">
+                                    <asp:HyperLink runat="server" NavigateUrl="UserProfile.aspx" ID="settingsLink">
+                                        <asp:Label ID='lblLoginName' runat="server"></asp:Label>
+                                    </asp:HyperLink>
+                                </span>
+                                <tp:TpLoginStatus ID="loginStatus" runat="server" OnLoggingOut="loginStatus_LoggingOut" />
+                            </div>
+                        </div>
+                        <div runat="server" id="tblSearch" class="repad inline-block">
+                            <tp:TpTextBox ID="txtSearch" OnEnterPressSubmitControl="btnSearch"
+                                ValidationGroup="KeywordSearch" CausesValidation="true" CssClass="input-sm searchstyle"
+                                placeholder="Search or Request ID"
+                                runat="server"></tp:TpTextBox>
+                            <i class="searchicon"></i>
+                            <asp:Button UseSubmitBehavior="true" ID="btnSearch" runat="server" Text="Search"
+                                CssClass="" OnClick="btnSearch_Click" ValidationGroup="KeywordSearch"
+                                CausesValidation="true" Visible="False" Width="0" Height="0" />
+                        </div>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" Text="Please enter keyword"
+                            runat="server" ValidationGroup="KeywordSearch" ControlToValidate="txtSearch"
+                            Display="None"></asp:RequiredFieldValidator>
+                    </div>
+                </div>
+                <%-- Main Content --%>
+                <div class="repad">
+                    <div class="repad">
+                        <asp:ContentPlaceHolder ID="plcContent" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <asp:UpdatePanel ID="pnlLastAction" runat="server">
+                <ContentTemplate>
+                    <div class="repad alertTop">
+                        <div class="repad">
+                            <div class="alert alert-warning alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <tp:LastActionLabel ID="lstA" runat="server"
+                                    role="alert" />
+                            </div>
+                        </div>
+                    </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+            <div id="copy">
+                <span>Copyright &copy; 2004-2014 <a href="http://www.targetprocess.com" title="Agile project management software"
+                    target="_blank">TargetProcess.</a> All rights reserved.
+                </span>
+            </div>
+            <div class="themelinkholder">
+                <asp:LinkButton runat="server" Text="Dark" CssClass="themelink darktheme" ID="lnkDarkTheme"></asp:LinkButton>
+            </div>
+        </div>
+    </div>
+    <div id="popper">
+        <iframe id="popframe" name="popf" frameborder="0" scrolling="auto"></iframe>
+        <div id="popclose"></div>
+    </div>
+    </form>
+    <div class="waitDialog">
+        <div class="text-center">
+            <div id="circleG">
+                <div id="circleG_1" class="circleG">
+                </div>
+                <div id="circleG_2" class="circleG">
+                </div>
+                <div id="circleG_3" class="circleG">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="Scripts/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript" src="Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="Scripts/HelpDeskRedux.min.js"></script>
+    <script src="Ckeditor/ckeditor.js"></script>
+    <script src="Ckeditor/adapters/jquery.js"></script>
+    <script>
+        //CKEDITOR.replace('ctl00_plcContent_requestDetails_txtDescription',
+        //    { skin: "Moono" });
+        var editor = $('.jquery_ckeditor').ckeditor().editor;
+        alert(editor.checkDirty());
+    </script>
 </body>
 </html>
