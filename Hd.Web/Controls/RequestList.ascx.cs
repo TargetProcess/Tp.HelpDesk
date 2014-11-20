@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2005-2013 TargetProcess. All rights reserved.
+// Copyright (c) 2005-2014 TargetProcess. All rights reserved.
 // TargetProcess proprietary/confidential. Use is subject to license terms. Redistribution of this file is strictly forbidden.
 // 
 
@@ -12,13 +12,13 @@ using Tp.RequestServiceProxy;
 
 namespace Hd.Web.Controls
 {
-    public partial class RequestList : UserControl
+    public partial class RequestList : UserControl, IVoteHolderGridViewContainer
     {
         protected override void OnInit(EventArgs e)
         {
             base.OnInit(e);
             voteManager.VoteAdded += voteManager_VoteAdded;
-            
+
             if (Settings.Scope == RequestScope.Private)
                 Response.Redirect("~/MyRequests.aspx");
         }
@@ -28,11 +28,16 @@ namespace Hd.Web.Controls
             if (!Requester.IsLogged || Portal.Request.IsRequesterAttached(args.RequestID.Value, Requester.LoggedUserID.Value))
                 return;
             var dto = new RequestRequesterDTO
-                      {
-                          RequestID = args.RequestID.Value,
-                          RequesterID = Requester.Logged.ID
-                      };
+            {
+                RequestID = args.RequestID.Value,
+                RequesterID = Requester.Logged.ID
+            };
             Portal.Request.AddRequester(args.RequestID.Value, dto);
+        }
+
+        public VoteHolderGridView VoteHolderGridView
+        {
+            get { return requestListing; }
         }
     }
 }

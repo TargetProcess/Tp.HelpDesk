@@ -13,7 +13,7 @@
         <ContentTemplate>
             <tp:GridController ID="controller" runat="server" GridID="allRequestListing" QueryType="Hd.Portal.AllRequestQuery"
                 EntityType="Hd.Portal.Request, Hd.Portal" PagerID="pager" />
-            <asp:GridView ID="allRequestListing" CellPadding="3" CellSpacing="0" CssClass="generalTable"
+            <tp:VoteHolderGridView ID="allRequestListing" CellPadding="3" CellSpacing="0" CssClass="generalTable"
                 runat="server" AutoGenerateColumns="False" GridLines="None" AllowSorting="True"
                 AllowPaging="false" PageSize="10" DataKeyNames="RequestID" ShowFooter="true">
                 <HeaderStyle CssClass="headRow" />
@@ -23,7 +23,7 @@
                     <asp:TemplateField HeaderText="" SortExpression="size(request.Requesters)">
                         <ItemTemplate>
                             <tp:Vote HorizontalAlign="Center" CssVotesCount="votesCount"
-                                CssVoteLabel="voteLabel" CssClass="votePanel" RequestID='<%# Eval("ID") %>' IsPossibleToVote='<%# Requester.IsLogged ? !Hd.Portal.Request.IsRequesterAttached((int)Eval("ID"),  Requester.LoggedUserID.Value ) : false %>'
+                                CssVoteLabel="voteLabel" CssClass="votePanel" RequestID='<%# Eval("ID") %>' IsPossibleToVote='<%# VoteHolderGridView.IsPossibleToVote((int)Eval("ID")) %>'
                                 runat="server" ID="vote" Count='<%# Eval("RequestersCount") %>'>
                             </tp:Vote>
                         </ItemTemplate>
@@ -77,7 +77,7 @@
                 <EmptyDataTemplate>
                     <b>No requests found</b>
                 </EmptyDataTemplate>
-            </asp:GridView>
+            </tp:VoteHolderGridView>
             <div style="text-align: right; width: 97%; margin: 0 1%;">
                 <tp:Pager ID="pager" runat="server" Width="100%" />
             </div>

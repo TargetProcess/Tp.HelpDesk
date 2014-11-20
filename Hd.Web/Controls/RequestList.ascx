@@ -1,8 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="RequestList.ascx.cs"
     Inherits="Hd.Web.Controls.RequestList" %>
-<%@ Import Namespace="Hd.Portal" %>
+<%@ Import Namespace="Hd.Portal"%>
 <tp:VoteManager runat="server" ID="voteManager" />
-<asp:GridView ID="requestListing" CellPadding="3" CellSpacing="0" CssClass="generalTable"
+<tp:VoteHolderGridView ID="requestListing" CellPadding="3" CellSpacing="0" CssClass="generalTable"
     runat="server" AutoGenerateColumns="False" GridLines="None" AllowSorting="True"
     AllowPaging="false" PageSize="10" DataKeyNames="RequestID" ShowFooter="true"
     PagerStyle-CssClass="pager">
@@ -46,9 +46,9 @@
             <ItemTemplate>
                 <div class="votestyle">
                     <tp:Vote HorizontalAlign="Center" CssVotesCount="votesCount" CssVoteLabel="voteLabel"
-                        CssClass="votePanel" RequestID='<%# Eval("ID") %>' IsPossibleToVote='<%# Requester.IsLogged ? !Hd.Portal.Request.IsRequesterAttached((int)Eval("ID"),  Requester.LoggedUserID.Value ) : false %>'
-                        runat="server" ID="vote" Count='<%# Eval("RequestersCount") %>'>
-                    </tp:Vote>
+                        CssClass="votePanel" RequestID='<%# Eval("ID") %>' IsPossibleToVote='<%# VoteHolderGridView.IsPossibleToVote((int)Eval("ID")) %>'
+                    runat="server" ID="vote" Count='<%# Eval("RequestersCount") %>'>
+                </tp:Vote>
                 </div>
             </ItemTemplate>
             <ItemStyle CssClass="hidden-sm hidden-xs" />
@@ -56,7 +56,6 @@
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Name" SortExpression="Name">
             <ItemTemplate>
-
                 <a class="requestName linkOpener" id="A2" href='<%# Eval("ID", "~/ViewRequest.aspx?RequestID={0}") %>'
                     runat="server" target="popf" title='<%# Eval("Name") %>'>
                     <code class="idtag"><%# Eval("ID") %></code> <%# Eval("Name") %>
@@ -90,8 +89,8 @@
             <ItemTemplate>
                 <%--<i class="creationdate"></i>--%>
                 <span title='<%# Eval("CreateDate") %>'>
-                    <tp:AgeLabel ID="a" runat="server" Date='<%# Eval("CreateDate") %>'>
-                    </tp:AgeLabel>
+                <tp:AgeLabel ID="a" runat="server" Date='<%# Eval("CreateDate") %>'>
+                </tp:AgeLabel>
                 </span>
             </ItemTemplate>
             <HeaderStyle CssClass="col-md-1 hidden-sm hidden-xs" />
@@ -107,7 +106,7 @@
         <asp:TemplateField HeaderText="Assignments">
             <ItemTemplate>
                 <span title='<%# Eval("Teams") %>'>
-                    <tp:TeamLabel ID="tl" runat="server" Teams='<%# Eval("Teams") %>' />
+                <tp:TeamLabel ID="tl" runat="server" Teams='<%# Eval("Teams") %>' />
                 </span>
             </ItemTemplate>
             <HeaderStyle CssClass="col-md-2 hidden-sm hidden-xs" />
@@ -117,4 +116,4 @@
     <EmptyDataTemplate>
         <b>No requests found</b>
     </EmptyDataTemplate>
-</asp:GridView>
+</tp:VoteHolderGridView>

@@ -365,6 +365,20 @@ namespace Hd.Portal
 			return service.IsRequesterAttached(requestID, requesterID);
 		}
 
+		public static int[] FilterAttachedToLoggedUser(int[] requestIDs)
+		{
+			if (Requester.IsLogged && requestIDs != null)
+			{
+				var service = ServiceManager.GetService<RequestService>();
+				return
+					service.GetIDs(
+						string.Format(
+							"select r.RequestID from Request r inner join r.Requesters requester where r in ({0}) AND requester = ?", string.Join(",", requestIDs)),
+						new object[] { Requester.LoggedUserID.GetValueOrDefault() });
+			}
+			return new int[] { };
+		}
+
 		public void AddAttachments(List<FileAttachment> fileAttachments)
 		{
 			if (fileAttachments.Count == 0)

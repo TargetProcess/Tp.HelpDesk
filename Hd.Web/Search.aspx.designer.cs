@@ -54,7 +54,7 @@ public partial class SearchPage {
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.GridView allRequestListing;
+    protected global::Hd.Web.Extensions.VoteHolderGridView allRequestListing;
     
     /// <summary>
     /// pager control.

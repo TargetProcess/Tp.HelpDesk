@@ -9,29 +9,29 @@ using Hd.Web.Extensions;
 using Hd.Web.Extensions.Components;
 using Tp.RequestServiceProxy;
 using Tp.Web.Extensions.Components;
-using StringUtils = Hd.Portal.Components.StringUtils;
+using StringUtils=Hd.Portal.Components.StringUtils;
 
-public partial class SearchPage : PersisterBasePage
+public partial class SearchPage : PersisterBasePage, IVoteHolderGridViewContainer
 {
-    protected override void OnInit(EventArgs e)
-    {
-        base.OnInit(e);
-        voteManager.VoteAdded += voteManager_VoteAdded;
-        //if (Settings.Scope == RequestScope.Private)
-        //    Response.Redirect("~/MyRequests.aspx");
-    }
+	protected override void OnInit(EventArgs e)
+	{
+		base.OnInit(e);
+		voteManager.VoteAdded += voteManager_VoteAdded;
+		//if (Settings.Scope == RequestScope.Private)
+		//    Response.Redirect("~/MyRequests.aspx");
+	}
 
-    private void voteManager_VoteAdded(object sender, VoteEventArgs args)
-    {
-        if (Requester.IsLogged && !Hd.Portal.Request.IsRequesterAttached(args.RequestID.Value, Requester.LoggedUserID.Value))
-        {
-            var dto = new RequestRequesterDTO { RequestID = args.RequestID.Value, RequesterID = Requester.Logged.ID };
-            Hd.Portal.Request.AddRequester(args.RequestID.Value, dto);
-        }
-    }
+	private void voteManager_VoteAdded(object sender, VoteEventArgs args)
+	{
+		if( Requester.IsLogged && !Hd.Portal.Request.IsRequesterAttached( args.RequestID.Value, Requester.LoggedUserID.Value ) )
+		{
+			var dto = new RequestRequesterDTO {RequestID = args.RequestID.Value, RequesterID = Requester.Logged.ID};
+			Hd.Portal.Request.AddRequester(args.RequestID.Value, dto);
+		}
+	}
 
-    protected override void OnLoad(EventArgs e)
-    {
+	protected override void OnLoad(EventArgs e)
+	{
         // Redirect to ViewRequest if ID
         String SearchString = Request.QueryString[0];
         if (SearchString == string.Empty)
@@ -50,21 +50,25 @@ public partial class SearchPage : PersisterBasePage
         {
             // NOT an integer
         }
-        base.OnLoad(e);
-        controller.RefreshGrid();
-    }
+		base.OnLoad(e);
+		controller.RefreshGrid();
+	}
 
-    public object GetHighlightedText(object value)
-    {
-        if (value == null)
-        {
-            return null;
-        }
+	public object GetHighlightedText(object value)
+	{
+		if (value == null)
+		{
+			return null;
+		}
 
-        string valueToHighlight = value.ToString();
+		string valueToHighlight = value.ToString();
 
-        string pattern = StringUtils.TrimToNull(Request.QueryString["SearchString"]);
+		string pattern = StringUtils.TrimToNull(Request.QueryString["SearchString"]);
 
-        return WordsHighlighter.Highlight(valueToHighlight, pattern);
-    }
+		return WordsHighlighter.Highlight(valueToHighlight, pattern);
+	}
+
+	public VoteHolderGridView VoteHolderGridView {
+		get { return allRequestListing; }
+	}
 }

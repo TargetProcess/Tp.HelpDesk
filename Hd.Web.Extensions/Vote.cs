@@ -4,11 +4,44 @@ using System;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using Hd.Portal;
 
 #endregion
 
 namespace Hd.Web.Extensions
 {
+    public interface IVoteHolderGridViewContainer
+    {
+        VoteHolderGridView VoteHolderGridView { get; }
+    }
+
+    public class VoteHolderGridView : GridView
+    {
+        private int[] _votedByLoggedUserCache = new int[] { };
+
+        public void OnGridBindingStart(object sender, GridControllerArgs args)
+        {
+            var list = args.SourceCollection;
+
+            if (list != null && list.Count > 0 && list[0] is Request)
+            {
+                int[] requestIds = new int[list.Count];
+
+                for (int i = 0; i < list.Count; i++)
+                {
+                    requestIds[i] = ((IEntity)list[i]).ID.Value;
+                }
+
+                _votedByLoggedUserCache = Request.FilterAttachedToLoggedUser(requestIds);
+            }
+        }
+
+        public bool IsPossibleToVote(int RequestID)
+        {
+            return Requester.IsLogged && Array.IndexOf(_votedByLoggedUserCache, RequestID) == -1;
+        }
+    }
+
     public class VoteEventArgs : EventArgs
     {
         private readonly int? _requestID;
