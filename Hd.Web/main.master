@@ -7,7 +7,6 @@
 <head runat="server">
     <title></title>
     <link href="Content/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <link href="Ckeditor/" rel="stylesheet" />
 </head>
 <body>
     <form id="frm" runat="server">
@@ -112,13 +111,13 @@
     <script type="text/javascript" src="Scripts/jquery-1.9.0.min.js"></script>
     <script type="text/javascript" src="Scripts/bootstrap.min.js"></script>
     <script type="text/javascript" src="Scripts/HelpDeskRedux.min.js"></script>
-    <script src="Ckeditor/ckeditor.js"></script>
-    <script src="Ckeditor/adapters/jquery.js"></script>
-    <script>
+    <script type="text/javascript" src="Ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="Ckeditor/adapters/jquery.js"></script>
+    <!--script type="text/javascript">
         //CKEDITOR.replace('ctl00_plcContent_requestDetails_txtDescription',
         //    { skin: "Moono" });
         var editor = $('.jquery_ckeditor').ckeditor().editor;
         alert(editor.checkDirty());
-    </script>
+    </script-->
 </body>
 </html>
