@@ -66,8 +66,8 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FredCK.FCKeditorV2">
-      <HintPath>..\Libs\FredCK.FCKeditorV2.dll</HintPath>
+    <Reference Include="CKEditor.NET">
+      <HintPath>..\Libs\CKEditor.NET.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
       <HintPath>..\Libs\log4net.dll</HintPath>

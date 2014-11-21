@@ -1,18 +1,18 @@
 ﻿// 
-// Copyright (c) 2005-2011 TargetProcess. All rights reserved.
+// Copyright (c) 2005-2014 TargetProcess. All rights reserved.
 // TargetProcess proprietary/confidential. Use is subject to license terms. Redistribution of this file is strictly forbidden.
 // 
 using System.Web;
-using FredCK.FCKeditorV2;
+using CKEditor.NET;
 
 namespace Hd.Web.Extensions
 {
-	public class FCKEditorRichEditControl : FCKeditor, IRichEditControl
+	public class FCKEditorRichEditControl : CKEditorControl, IRichEditControl
 	{
 		public FCKEditorRichEditControl()
 		{
 			BasePath = VirtualPathUtility.ToAbsolute("~/fckeditor/");
-			Config["EnterMode"] = "br";
+			config.enterMode = EnterMode.BR;
 
 			HttpContext.Current.Session["FCKeditor:UserFilesPath"] = VirtualPathUtility.ToAbsolute("~/upload/");
 
@@ -22,12 +22,6 @@ namespace Hd.Web.Extensions
 		public string EditorClientID
 		{
 			get { return base.ClientID; }
-		}
-
-		public int MaxLength
-		{
-			get { return 8000; }
-			set { }
 		}
 
 		public RichMode Mode
@@ -50,14 +44,8 @@ namespace Hd.Web.Extensions
 						break;
 				}
 
-				Config["CustomConfigurationsPath"] = VirtualPathUtility.ToAbsolute(ConfigurationPath); // +"?" + DateTime.Now.Ticks; ;
+				config.customConfig = VirtualPathUtility.ToAbsolute(ConfigurationPath); // +"?" + DateTime.Now.Ticks; ;
 			}
-		}
-
-		public string Text
-		{
-			get { return Value; }
-			set { Value = value; }
 		}
 
 		public string ConfigurationPath { get; set; }

@@ -18,8 +18,8 @@
                     <div class="col-lg-12 repad">
                         <div class="votestyle votestyle2">
                             <tp:Vote HorizontalAlign="Center" CssVotesCount="votesCount" CssVoteLabel="voteLabel"
-                                CssClass="votePanel" RequestID='<%# Eval("ID") %>' IsPossibleToVote='<%# Requester.IsLogged ? !Hd.Portal.Request.IsRequesterAttached((int)Eval("ID"),  Requester.LoggedUserID.Value ) : false %>'
-                                runat="server" ID="vote" Count='<%# Eval("RequestersCount") %>'>
+                                CssClass="votePanel" RequestID='<%# Eval("ID") %>' IsPossibleToVote='<%# VoteHolderGridView.IsPossibleToVote((int)Eval("ID")) %>'
+                                runat="server" ID="vote1" Count='<%# Eval("RequestersCount") %>'>
                             </tp:Vote>
                         </div>
                         <a class="requestName linkOpener" id="A2" href='<%# Eval("ID", "~/ViewRequest.aspx?RequestID={0}") %>'
@@ -47,7 +47,7 @@
                 <div class="votestyle">
                     <tp:Vote HorizontalAlign="Center" CssVotesCount="votesCount" CssVoteLabel="voteLabel"
                         CssClass="votePanel" RequestID='<%# Eval("ID") %>' IsPossibleToVote='<%# VoteHolderGridView.IsPossibleToVote((int)Eval("ID")) %>'
-                    runat="server" ID="vote" Count='<%# Eval("RequestersCount") %>'>
+                    runat="server" ID="vote2" Count='<%# Eval("RequestersCount") %>'>
                 </tp:Vote>
                 </div>
             </ItemTemplate>
