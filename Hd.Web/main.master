@@ -73,7 +73,7 @@
                     <div class="repad alertTop">
                         <div class="repad">
                             <div class="alert alert-warning alert-dismissable">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
                                 <tp:LastActionLabel ID="lstA" runat="server"
                                     role="alert" />
                             </div>

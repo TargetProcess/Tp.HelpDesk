@@ -1,4 +1,4 @@
-﻿@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+﻿@import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
 .container-fluid {
     min-width: 480px !important;
@@ -55,10 +55,10 @@ a {
     text-decoration: none;
 }
 
-    a:hover {
-        color: @TextHover;
-        text-decoration: dotted;
-    }
+a:hover {
+    color: @TextHover;
+    text-decoration: dotted;
+}
 
 .top {
     background: @DarkBG;
@@ -69,14 +69,14 @@ a {
     color: @TextGray;
 }
 
-    #top a {
-        color: @TextGray;
-    }
+#top a {
+    color: @TextGray;
+}
 
-        #top a:hover {
-            color: @TextGray;
-            text-decoration: underline;
-        }
+#top a:hover {
+    color: @TextGray;
+    text-decoration: underline;
+}
 
 .whitebg {
     background-color: @LightGray;
@@ -124,17 +124,17 @@ a {
     text-overflow: ellipsis;
 }
 
-    .tab a::before, .selectedTab::before {
-        background-image: url('images/icons-general.svg');
-        background-size: auto auto;
-        cursor: pointer;
-        display: none;
-        font-family: OpenSans,'Helvetica Neue',Helvetica,Arial,sans-serif;
-        font-size: 16px;
-        height: 30px;
-        width: 32px;
-        z-index: 1;
-    }
+.tab a::before, .selectedTab::before {
+    background-image: url('images/icons-general.svg');
+    background-size: auto auto;
+    cursor: pointer;
+    display: none;
+    font-family: OpenSans,'Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    height: 30px;
+    width: 32px;
+    z-index: 1;
+}
 
 @media only screen and (max-width: 960px) {
     .darktop {
@@ -191,13 +191,15 @@ a {
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
+    text-decoration: none;
 }
 
-    .clearTab:hover, .clearTab:focus, .clearTab:visited {
-        background-color: #618531;
-        background-image: linear-gradient(to top, #6F963C, #B4E154);
-        color: @TextAlt !important;
-    }
+.clearTab:hover, .clearTab:focus, .clearTab:visited {
+    background-color: #618531;
+    background-image: linear-gradient(to top, #6F963C, #B4E154);
+    color: @TextAlt !important;
+    text-decoration: none;
+}
 /*.clearTab a {
     color: @TextAlt !important;
 }
@@ -221,8 +223,9 @@ a {
 }
 
 html, body {
-    height: 100%;
+    min-height: 100%;
     width: 100%;
+    position: relative;
 }
 
 .darkbar {
@@ -282,10 +285,10 @@ IMG.icon {
     font: bold 12px;
 }
 
-    .button:hover, .largeButton:hover {
-        background: #46A337;
-        color: #FFF;
-    }
+.button:hover, .largeButton:hover {
+    background: #46A337;
+    color: #FFF;
+}
 
 .largeButton {
     border-top: 1px solid #DDD;
@@ -303,10 +306,10 @@ A.buttonSecondary {
     color: #333;
 }
 
-    A.buttonSecondary:hover {
-        background: red;
-        color: #FFF;
-    }
+A.buttonSecondary:hover {
+    background: red;
+    color: #FFF;
+}
 
 .tableTitle {
     font: bold 14px;
@@ -317,13 +320,13 @@ A.buttonSecondary {
     width: 100%;
 }
 
-    .generalTable .headRow, .tableHead {
-        background: @Header;
-        font-weight: normal;
-        border-left: 4px solid @Header;
-        line-height: 26px;
-        vertical-align: middle;
-    }
+.generalTable .headRow, .tableHead {
+    background: @Header;
+    font-weight: normal;
+    border-left: 4px solid @Header;
+    line-height: 26px;
+    vertical-align: middle;
+}
 
 th, th a {
     font-weight: normal !important;
@@ -333,9 +336,9 @@ th, th a {
     margin-right: 6px;
 }
 
-    th, th a:hover {
-        text-decoration: none !important;
-    }
+th, th a:hover {
+    text-decoration: none !important;
+}
 
 .innerTable TR {
 }
@@ -388,11 +391,16 @@ th, th a {
     z-index: -50000;
 }
 
-    #copy span {
-        padding: 3px;
-        border-radius: 3px;
-        background: @DarkGray;
-    }
+#copy span {
+    padding: 3px;
+    border-radius: 3px;
+    background: @DarkGray;
+}
+
+#footer > #copy{
+    position: absolute;
+    z-index: 10;
+}
 
 .fieldName {
     font: 11px "Open Sans";
@@ -408,9 +416,9 @@ th, th a {
     color: @DarkBG;
 }
 
-    .tabInnerContent label {
-        color: @TextGray;
-    }
+.tabInnerContent label {
+    color: @TextGray;
+}
 
 .tabInnerPanel {
     display: block;
@@ -592,9 +600,9 @@ table {
     display: inline-block;
 }
 
-    .votesCount a {
-        color: @DarkBG;
-    }
+.votesCount a {
+    color: @DarkBG;
+}
 
 .smallPanel {
     width: auto;
@@ -737,9 +745,9 @@ input[type=checkbox] {
     cursor: auto !important;
 }
 
-    .itemrowOther:hover {
-        background-color: @LightGray !important;
-    }
+.itemrowOther:hover {
+    background-color: @LightGray !important;
+}
 
 .itemrow td:nth-child(2) {
     white-space: nowrap;
@@ -771,18 +779,18 @@ input[type=checkbox] {
     margin: 12px 0;
 }
 
-    .additionalinfo .row .col-xs-9 {
-        color: @Text;
-    }
+.additionalinfo .row .col-xs-9 {
+    color: @Text;
+}
 
 blockquote {
     font-size: 14px;
     margin: 0 0 5px 0;
 }
 
-    blockquote small {
-        font-size: 11px;
-    }
+blockquote small {
+    font-size: 11px;
+}
 
 #popper {
     background-color: rgba(33, 33, 33, 0.8);
@@ -818,12 +826,12 @@ blockquote {
 #popframe {
     background-color: @LightGray;
     position: relative;
-    top: 0px;
-    bottom: 5px;
+    top: 0;
+    bottom: 0;
     right: 5px;
     left: 6%;
-    min-width: 100%;
-    min-height: 100%;
+    width: 100%;
+    height: 100%;
     z-index: 99589;
 }
 /* ICONS */
@@ -978,22 +986,22 @@ i.creationdate {
     box-shadow: 0px 1px rgba(255, 255, 255, 0.4), 0px 1px rgba(255, 255, 255, 0.35) inset;
 }
 
-    .btn-success:hover {
-        background-color: #618531;
-        background-image: linear-gradient(to top, #6F963C, #B4E154);
-    }
+.btn-success:hover {
+    background-color: #618531;
+    background-image: linear-gradient(to top, #6F963C, #B4E154);
+}
 
 .btn-warning, btn-danger {
     color: #F85F61;
 }
 
-    .btn-warning:hover, btn-danger:hover {
-        text-shadow: 0px -1px #A03537;
-        color: #FFF;
-        box-shadow: 0px 1px rgba(255, 255, 255, 0.4), 0px 1px rgba(255, 255, 255, 0.35) inset;
-        border-color: #BF3F41;
-        background-image: linear-gradient(to bottom, #F85F61, #C94244);
-    }
+.btn-warning:hover, btn-danger:hover {
+    text-shadow: 0px -1px #A03537;
+    color: #FFF;
+    box-shadow: 0px 1px rgba(255, 255, 255, 0.4), 0px 1px rgba(255, 255, 255, 0.35) inset;
+    border-color: #BF3F41;
+    background-image: linear-gradient(to bottom, #F85F61, #C94244);
+}
 
 .editLink {
     height: 20px;
@@ -1063,11 +1071,11 @@ i.creationdate {
     z-index: 5389;
 }
 
-    .alertTop .alert-warning {
-        background: @TextFeather;
-        border: 1px solid @DarkPlaceholder;
-        color: @Text;
-    }
+.alertTop .alert-warning {
+    background: @TextFeather;
+    border: 1px solid @DarkPlaceholder;
+    color: @Text;
+}
 
 .themelinkholder {
     position: fixed;
@@ -1088,57 +1096,57 @@ i.creationdate {
     color: #292c33;
 }
 
-    .lighttheme:hover {
-        background-color: #b7bec7;
-        color: #2976c1;
-    }
+.lighttheme:hover {
+    background-color: #b7bec7;
+    color: #2976c1;
+}
 
 .darktheme {
     background-color: rgba(41, 44, 51,0.3);
     color: #fff;
 }
 
-    .darktheme:hover {
-        background-color: #454952;
-        color: #c18f29;
-    }
+.darktheme:hover {
+    background-color: #454952;
+    color: #c18f29;
+}
 
 .pager {
     padding: 0 6px;
 }
 
-    .pager a {
-        padding: 0 6px;
-        color: @TextGray;
-    }
+.pager a {
+    padding: 0 6px;
+    color: @TextGray;
+}
 
-        .pager a.next {
-            margin-left: auto 16px;
-        }
+.pager a.next {
+    margin-left: auto 16px;
+}
 
-        .pager a.previous {
-            margin-right: 16px;
-        }
+.pager a.previous {
+    margin-right: 16px;
+}
 
-        .pager a:hover {
-            color: @Text;
-        }
+.pager a:hover {
+    color: @Text;
+}
 
-        .pager a.next:after {
-            content: " ";
-            display: inline-block;
-            width: 5px;
-            height: 8px;
-            background: url("images/icons-general.svg") -310px -158px no-repeat;
-        }
+.pager a.next:after {
+    content: " ";
+    display: inline-block;
+    width: 5px;
+    height: 8px;
+    background: url("images/icons-general.svg") -310px -158px no-repeat;
+}
 
-        .pager a.previous:before {
-            content: " ";
-            display: inline-block;
-            width: 5px;
-            height: 8px;
-            background: url("images/icons-general.svg") -350px -158px no-repeat;
-        }
+.pager a.previous:before {
+    content: " ";
+    display: inline-block;
+    width: 5px;
+    height: 8px;
+    background: url("images/icons-general.svg") -350px -158px no-repeat;
+}
 
 tr.headRow th:nth-child(2) {
     padding-left: 6px;
@@ -1237,7 +1245,7 @@ i.iconPop {
 }
 /* Validator hack */
 span.valerror[style*="inline"] {
-    display: block !Important;
+    display: block!important;
     padding: 6px;
     margin: 6px 0px;
 }
@@ -1407,18 +1415,18 @@ a[href=""], a[href=""] span {
     width: 100%;
 }
 
-    .projectMenu .dropdown-toggle {
-        background: linear-gradient(to bottom, @Sidebar, @DarkBG);
-        color: @DarkPlaceholder;
-        border: 1px solid @DarkPlaceholder;
-        text-shadow: none;
-        /*width: 100%;*/
-        text-align: left;
-    }
+.projectMenu .dropdown-toggle {
+    background: linear-gradient(to bottom, @Sidebar, @DarkBG);
+    color: @DarkPlaceholder;
+    border: 1px solid @DarkPlaceholder;
+    text-shadow: none;
+    /*width: 100%;*/
+    text-align: left;
+}
 
-        .projectMenu .dropdown-toggle span {
-            margin-left: 4px !important;
-        }
+.projectMenu .dropdown-toggle span {
+    margin-left: 4px !important;
+}
 
 .dropdown-menu {
     -moz-border-radius: 2px;
@@ -1430,7 +1438,6 @@ a[href=""], a[href=""] span {
 .cp .col-xs-6:first-child {
     padding-right: 8px !important;
 }
-
 
 .cp input[type=text] {
     height: 34px !important;
