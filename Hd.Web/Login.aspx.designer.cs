@@ -129,6 +129,15 @@ public partial class TpLogin {
     protected global::System.Web.UI.WebControls.Button btnLoginAsGuest;
     
     /// <summary>
+    /// Registration control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Panel Registration;
+    
+    /// <summary>
     /// forgotPassword control.
     /// </summary>
     /// <remarks>

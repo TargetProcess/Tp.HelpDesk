@@ -10,9 +10,19 @@ using Hd.Portal;
 using Hd.Portal.Components.LastActionProcessor;
 using Hd.Web.Extensions;
 using Hd.Web.Extensions.Components;
+using System.Configuration;
 
 public partial class RegisterPage : PersisterBasePage
 {
+	protected void Page_Load(Object sender, EventArgs e)
+	{
+		var allowRegistering = ConfigurationManager.AppSettings["AllowRegistering"] ?? String.Empty;
+		if (allowRegistering.ToLower() != "true")
+		{
+			Response.Redirect("~/Login.aspx");
+		}
+	}
+
 	protected override void OnInit(EventArgs e)
 	{
 		requesterSource.Updated += requestSource_Updated;
