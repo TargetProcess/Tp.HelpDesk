@@ -25,7 +25,6 @@ namespace Hd.Web
 
             }
 
-            controller.FilterProject = Session["currentproject"].ToString();
             controller.RefreshGrid();
         }
     }

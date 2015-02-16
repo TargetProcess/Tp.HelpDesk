@@ -125,13 +125,6 @@ namespace Hd.Web.Extensions
 
         #region Properties
 
-        private String _filterProject = "-1";
-
-        public String FilterProject
-        {
-            set { _filterProject = value; }
-        }
-
         private String _gridId;
 
         public String GridID
@@ -407,23 +400,6 @@ namespace Hd.Web.Extensions
             if (countOfOrderByFields == 2)
                 _businessQuery.Query.OrderByTerms.RemoveAt(1);
 
-            // FILTER CODE STARTS
-            if (_filterProject != "-1")
-            {
-                var groupName = new WhereClause(WhereClauseRelationship.And);
-
-                //_filterProject = RemoveSpecialCharacters(_filterProject);
-                AppendLikeExpression(_filterProject, _businessQuery.Query, groupName, "Project.Name");
-                //AppendLikeExpression("Tau Product Web Site - Scrum #1", _businessQuery.Query, groupName, "Project.Name");
-                
-                _businessQuery.Query.WherePhrase.SubClauses.Add(groupName);
-            }
-            //else
-            //{
-            //    _businessQuery.Query.WherePhrase.SubClauses.Clear();
-            //}
-            // FILTER CODE ENDS
-
             IList list;
             // Search functionality
             if (HttpContext.Current.Request.QueryString["SearchString"] != null)
@@ -439,12 +415,6 @@ namespace Hd.Web.Extensions
             else
             {
                 list = DataPortal.Instance.Retrieve(_businessQuery.Query);
-            }
-            // THE UPDATE QUERY SHOULD BE REINITIALIZED AND THE PAGER TOTAL COUNT SHOULD BE UPDATED
-            if (_filterProject != "-1")
-            {
-                UpdatePagerTotalCount();
-                _businessQuery.Reinitialize();
             }
 
             _grid.DataSource = list;

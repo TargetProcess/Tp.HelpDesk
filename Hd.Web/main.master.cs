@@ -58,9 +58,6 @@ public partial class main : MasterPage
         spanUsername.Visible = !String.IsNullOrEmpty(lblLoginName.Text.Trim());
         tblSearch.Visible = Requester.IsLogged || Requester.IsLoggedAsAnonymous;
 
-        if (!IsPostBack)
-            CreateProjectLinks();
-
         // POSTBACK ONLY below
         if (!IsPostBack)
             return;
@@ -70,77 +67,6 @@ public partial class main : MasterPage
         {
             PerformSearch();
         }
-    }
-
-    /// <summary>   Creates the links for switching projects </summary>
-    /// <remarks>   Dax Pandhi, 11/17/2014. </remarks>
-    private void CreateProjectLinks()
-    {
-        if (Session["projects"] == null)
-        {
-            Session["projects"] = DownloadProjects();
-        }
-        ProjectCollection projects = (ProjectCollection)Session["projects"];
-        StringBuilder sb = new StringBuilder();
-
-        sb.AppendLine(String.Format(
-                "<li><a class='projectlink' href='changeproject.aspx?id={0}&returnurl={1}'>{2}</a></li>",
-                "-1",
-                Server.HtmlEncode(Request.Url.AbsoluteUri),
-                "All Projects"));
-        
-        foreach (Project p in projects.Projects.Where(p => p.IsProduct && p.IsActive))
-            sb.AppendLine(String.Format(
-                "<li><a class='projectlink' href='changeproject.aspx?id={0}&returnurl={1}'>{2}</a></li>",
-                Server.HtmlEncode(p.Id.ToString()),
-                Server.HtmlEncode(Request.Url.AbsoluteUri),
-                p.Name));
-
-        litProjects.Text = sb + "</ul></div>";
-
-        try
-        {
-            // Get current project name
-            String currentProjectName_original = Session["currentproject"].ToString();
-            String currentProjectName = "";
-            if (currentProjectName_original.Length > 19)
-                currentProjectName = currentProjectName_original.Substring(0, 16) + "...";
-            else
-                currentProjectName = currentProjectName_original;
-
-            currentProjectName = currentProjectName == "-1" ? "Select Project" : currentProjectName;
-            currentProjectName_original = currentProjectName_original == "-1"
-                                              ? "Select Project" : currentProjectName_original;
-
-            // If there is no current project, show generic text
-            litCurrentProject.Text = "<div class=\"btn-group projectMenu\"><button type=\"button\" title='" + currentProjectName_original + "' class=\"btn btn-default btn-sm dropdown-toggle\" data-toggle=\"dropdown\" aria-expanded=\"false\">"
-                + currentProjectName + "<span class=\"caret\"></span></button><ul class=\"dropdown-menu\" role=\"menu\">";
-        }
-        catch (Exception)
-        {
-            // Something went wrong, so just show generic text
-            litCurrentProject.Text = "<div class=\"btn-group projectMenu\"><button type=\"button\" class=\"btn btn-default btn-sm dropdown-toggle\" data-toggle=\"dropdown\" aria-expanded=\"false\">Select Project<span class=\"caret\"></span></button><ul class=\"dropdown-menu\" role=\"menu\">";
-        }
-
-    }
-
-    /// <summary>   Downloads list of projects from the TargetProcess using REST API. </summary>
-    /// <remarks>   Dax Pandhi, 11/17/2014. </remarks>
-    /// <returns>   A ProjectCollection. </returns>
-    private static ProjectCollection DownloadProjects()
-    {
-        WebClient client = new WebClient
-        {
-            Credentials =
-                new NetworkCredential(ConfigurationManager.AppSettings["AdminLogin"],
-                                      ConfigurationManager.AppSettings["AdminPassword"])
-        };
-        string xml = client.DownloadString(ConfigurationManager.AppSettings["TargetProcessPath"]
-            + "/api/v1/Projects/?include=[ID,Name,IsActive,IsProduct]&take=500");
-
-        var serializer = new XmlSerializer(typeof(ProjectCollection));
-        var userStoryCollection = (ProjectCollection)serializer.Deserialize(new StringReader(xml));
-        return userStoryCollection;
     }
 
     private string GetTheme()

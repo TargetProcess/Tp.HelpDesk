@@ -14,7 +14,6 @@ public partial class Issues : PersisterBasePage
     protected override void OnLoad(EventArgs e)
     {
         base.OnLoad(e);
-        controller.FilterProject = Session["currentproject"].ToString();
         controller.RefreshGrid();
     }
 
