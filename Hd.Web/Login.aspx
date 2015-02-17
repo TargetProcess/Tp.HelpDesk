@@ -60,9 +60,11 @@
                                 <br />
                                 <br />
                                 <div class="well">
-                                    Don't have a Help Desk account? <a href="register.aspx" class="">Sign up.</a>
-                                    <br />
-                                    <br />
+                                    <asp:Panel runat="server" ID="Registration">
+                                        Don't have a Help Desk account? <a href="register.aspx" class="">Sign up.</a>
+                                        <br />
+                                        <br />
+                                    </asp:Panel>
                                     <asp:LinkButton OnClick="forgotPassword_OnForgotPassword" runat="server" ID="forgotPassword">Forgot password?</asp:LinkButton>
                                 </div>
                                 </div>

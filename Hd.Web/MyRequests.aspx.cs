@@ -39,9 +39,6 @@ public partial class MyRequests : PersisterBasePage
 		manager.RegisterAsyncPostBackControl(requesterController);
 		manager.RegisterAsyncPostBackControl(ownerController);
 
-		var currentProject = Session["currentproject"] ?? String.Empty;
-		requesterController.FilterProject = currentProject.ToString();
-		ownerController.FilterProject = currentProject.ToString();
         ownerController.InitializeFilter();
 		ownerController.Grid.Sorting += OwnerGrid_Sorting;
 		requesterController.Grid.Sorting += RequesterGrid_Sorting;

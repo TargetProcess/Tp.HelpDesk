@@ -105,7 +105,6 @@
     <Content Include="Admin\Default.aspx" />
     <Content Include="App_Data\logo.txt" />
     <Content Include="App_Data\home.txt" />
-    <Content Include="ChangeProject.aspx" />
     <Content Include="Ckeditor\adapters\jquery.js" />
     <Content Include="Ckeditor\build-config.js" />
     <Content Include="Ckeditor\CHANGES.html" />
@@ -1470,13 +1469,6 @@
     </Compile>
     <Compile Include="Admin\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ChangeProject.aspx.cs">
-      <DependentUpon>ChangeProject.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ChangeProject.aspx.designer.cs">
-      <DependentUpon>ChangeProject.aspx</DependentUpon>
     </Compile>
     <Compile Include="Controls\DescriptionLabel.cs" />
     <Compile Include="Controls\Navbar.ascx.cs">
