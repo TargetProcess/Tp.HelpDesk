@@ -33,8 +33,8 @@ public partial class TpLogin : PersisterBasePage
 
         logoHolder.Visible = ConfigurationManager.AppSettings["ShowLogo"].ToLower() == "true";
 
-		var allowRegistering = ConfigurationManager.AppSettings["AllowRegistering"] ?? String.Empty;
-		Registration.Visible = allowRegistering.ToLower() == "true";
+		var denyRegistering = ConfigurationManager.AppSettings["DenyRegistering"] ?? String.Empty;
+		Registration.Visible = denyRegistering.ToLower() != "true";
 		// Get theme from WebSettings
 		string theme = ConfigurationManager.AppSettings["Theme"] == "Dark" ? "dark" : "light";
 

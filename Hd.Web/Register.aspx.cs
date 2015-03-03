@@ -16,8 +16,8 @@ public partial class RegisterPage : PersisterBasePage
 {
 	protected void Page_Load(Object sender, EventArgs e)
 	{
-		var allowRegistering = ConfigurationManager.AppSettings["AllowRegistering"] ?? String.Empty;
-		if (allowRegistering.ToLower() != "true")
+		var denyRegistering = ConfigurationManager.AppSettings["DenyRegistering"] ?? String.Empty;
+		if (denyRegistering.ToLower() == "true")
 		{
 			Response.Redirect("~/Login.aspx");
 		}
