@@ -15,8 +15,8 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-4"></div>
-            <div class="col-lg-4 contentbg repad" id="logoHolder" runat="server">
-                <div class="row whitebg">
+            <div class="col-lg-4 contentbg repad">
+                <div class="row whitebg" id="logoHolder" runat="server">
                     <div class="repad">
                         <div class="col-lg-6">
                             <img src="logo.svg" class="img-responsive" />
