@@ -54,11 +54,21 @@
             <ItemStyle CssClass="hidden-sm hidden-xs" />
             <HeaderStyle CssClass="hidden-sm hidden-xs" />
         </asp:TemplateField>
+        <asp:TemplateField HeaderText="ID" SortExpression="RequestID">
+            <ItemTemplate>
+                <a class="linkOpener" id="A2" href='<%# Eval("ID", "~/ViewRequest.aspx?RequestID={0}") %>'
+                    runat="server" target="popf" title='<%# Eval("Name") %>'>
+                    <code class="idtag"><%# Eval("ID") %></code>
+                </a>
+            </ItemTemplate>
+            <ItemStyle CssClass="col-md-1 hidden-sm hidden-xs" />
+            <HeaderStyle CssClass="col-md-1 hidden-sm hidden-xs" />
+        </asp:TemplateField>
         <asp:TemplateField HeaderText="Name" SortExpression="Name">
             <ItemTemplate>
                 <a class="requestName linkOpener" id="A2" href='<%# Eval("ID", "~/ViewRequest.aspx?RequestID={0}") %>'
                     runat="server" target="popf" title='<%# Eval("Name") %>'>
-                    <code class="idtag"><%# Eval("ID") %></code> <%# Eval("Name") %>
+                    <%# Eval("Name") %>
                 </a>
             </ItemTemplate>
             <ItemStyle CssClass="col-md-5 hidden-sm hidden-xs" />
