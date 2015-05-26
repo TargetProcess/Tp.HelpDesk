@@ -61,15 +61,15 @@
                     <code class="idtag"><%# Eval("ID") %></code> <%# Eval("Name") %>
                 </a>
             </ItemTemplate>
-            <ItemStyle CssClass="col-md-3 hidden-sm hidden-xs" />
-            <HeaderStyle CssClass="col-md-3 hidden-sm hidden-xs" />
+            <ItemStyle CssClass="col-md-5 hidden-sm hidden-xs" />
+            <HeaderStyle CssClass="col-md-5 hidden-sm hidden-xs" />
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Product" SortExpression="Project.Name">
             <ItemTemplate>
                 <%# Eval("ProjectName")%>
             </ItemTemplate>
-            <ItemStyle CssClass="col-md-3 excesser hidden-sm hidden-xs" />
-            <HeaderStyle CssClass="col-md-3 hidden-sm hidden-xs" />
+            <ItemStyle CssClass="col-md-1 excesser hidden-sm hidden-xs" />
+            <HeaderStyle CssClass="col-md-1 hidden-sm hidden-xs" />
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Priority" SortExpression="Priority.Name">
             <ItemTemplate>

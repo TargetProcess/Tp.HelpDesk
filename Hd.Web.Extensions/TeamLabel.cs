@@ -19,7 +19,7 @@ namespace Hd.Web.Extensions
                 {
                     str += "<span class='assignments' "
                         + "title='" + team.UserName + " (" + team.ActorName + ")'>"
-                        + team.UserName + " (" + team.ActorName + ")</span>";
+                        + team.UserName + "</span>";
                 }
                 _text = str;
             }
