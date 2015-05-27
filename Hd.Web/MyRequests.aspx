@@ -128,8 +128,8 @@
                                 <ItemTemplate>
                                     <i class="iconHolder icon<%# Eval("RequestType.Name")%>"></i>
                                 </ItemTemplate>
-                                <HeaderStyle CssClass="col-md-1 hidden-sm hidden-xs" />
-                                <ItemStyle CssClass="col-md-1 hidden-sm hidden-xs" />
+                                <HeaderStyle CssClass="typeName hidden-sm hidden-xs" />
+                                <ItemStyle CssClass="typeName hidden-sm hidden-xs" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Assignments">
                                 <ItemTemplate>
@@ -222,6 +222,16 @@
                                 <ItemStyle CssClass="hidden-sm hidden-xs" />
                                 <HeaderStyle CssClass="hidden-sm hidden-xs" />
                             </asp:TemplateField>
+                            <asp:TemplateField HeaderText="ID" SortExpression="RequestID">
+                                <ItemTemplate>
+                                    <a class="linkOpener" id="A2" href='<%# Eval("ID", "~/ViewRequest.aspx?RequestID={0}") %>'
+                                        runat="server" target="popf" title='<%# Eval("Name") %>'>
+                                        <code class="idtag"><%# Eval("ID") %></code>
+                                    </a>
+                                </ItemTemplate>
+                                <ItemStyle CssClass="col-md-1 hidden-sm hidden-xs" />
+                                <HeaderStyle CssClass="col-md-1 hidden-sm hidden-xs" />
+                            </asp:TemplateField>
                             <asp:TemplateField HeaderText="Name" SortExpression="Name">
                                 <ItemTemplate>
 
@@ -269,8 +279,8 @@
                                 <ItemTemplate>
                                     <i class="iconHolder icon<%# Eval("RequestType.Name")%>"></i>
                                 </ItemTemplate>
-                                <HeaderStyle CssClass="col-md-1 hidden-sm hidden-xs" />
-                                <ItemStyle CssClass="col-md-1 hidden-sm hidden-xs" />
+                                <HeaderStyle CssClass="typeName hidden-sm hidden-xs" />
+                                <ItemStyle CssClass="typeName hidden-sm hidden-xs" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Assignments">
                                 <ItemTemplate>

@@ -110,8 +110,8 @@
             <ItemTemplate>
                 <i class="iconHolder icon<%# Eval("RequestType.Name")%>"></i>
             </ItemTemplate>
-            <HeaderStyle CssClass="col-md-1 hidden-sm hidden-xs" />
-            <ItemStyle CssClass="col-md-1 hidden-sm hidden-xs" />
+            <HeaderStyle CssClass="typeName hidden-sm hidden-xs" />
+            <ItemStyle CssClass="typeName hidden-sm hidden-xs" />
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Assignments">
             <ItemTemplate>
