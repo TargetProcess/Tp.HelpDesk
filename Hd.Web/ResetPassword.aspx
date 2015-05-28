@@ -48,7 +48,7 @@
             </div>
         </div>
         <div id="copy">
-            Copyright &copy; 2004-2007 <a href="http://www.targetprocess.com" target="_blank">TargetProcess.</a>
+            Copyright &copy; 2004-2015 <a href="http://www.targetprocess.com" target="_blank">TargetProcess.</a>
             All rights reserved.<br />
         </div>
     </div>

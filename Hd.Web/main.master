@@ -82,7 +82,7 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
             <div id="copy">
-                <span>Copyright &copy; 2004-2014 <a href="http://www.targetprocess.com" title="Agile project management software"
+                <span>Copyright &copy; 2004-2015 <a href="http://www.targetprocess.com" title="Agile project management software"
                     target="_blank">TargetProcess.</a> All rights reserved.
                 </span>
             </div>
