@@ -18,8 +18,8 @@ namespace Hd.Web.Extensions
                 foreach (Team team in value)
                 {
                     str += "<span class='assignments' "
-                        + "title='" + team.UserName + " (" + team.UserName + ")'>"
-                        + team.UserName + " (" + team.ActorName + ")</span>";
+                        + "title='" + team.UserName + " (" + team.ActorName + ")'>"
+                        + team.UserName + "</span>";
                 }
                 _text = str;
             }
