@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-lg-4"></div>
             <div class="col-lg-4 contentbg repad">
-                <asp:Panel Visible="True" runat="server" ID="accessDeniedPanel">
+                <asp:Panel Visible="False" runat="server" ID="accessDeniedPanel">
                     <h2>Access Denied</h2>
                     <p class="alert alert-danger">
                         You do not have permissions to perform the requested action.
@@ -22,7 +22,7 @@
                 </asp:Panel>
                 <asp:Panel Visible="true" CssClass="repad" runat="server" ID="resetPasswordPanel">
                     <asp:Label runat="server" Visible="false" CssClass="alert alert-warning" ID="errorMessage" />
-                    <h2>Change Password<asp:Label runat="server" Text="" ID="requesterName" /></h2>
+                    <h2>Change Password for <asp:Label runat="server" Text="" ID="requesterName" /></h2>
                     <p>
                         Use this form to change your password. Once changed, your new password will be in
                         effect next time you login.
