@@ -23,7 +23,7 @@
                             </tp:Vote>
                         </div>
                         <a class="requestName linkOpener" id="A2" href='<%# Eval("ID", "~/ViewRequest.aspx?RequestID={0}") %>'
-                            runat="server" target="popf" title='ID <%# Eval("ID") %> - <%# Eval("Name") %>'>
+                            runat="server" target="popf" title='<%# Eval("Name") %>'>
                             <i class="iconHolder icon<%# Eval("RequestType.Name")%>"></i><%# Eval("Name") %>
                         </a>
                         <div class="row">
