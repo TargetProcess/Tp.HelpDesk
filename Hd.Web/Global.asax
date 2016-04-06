@@ -1,3 +1,4 @@
+<%@ Import Namespace="System.Net" %>
 <%@ Import Namespace="System.Reflection" %>
 <%@ Import namespace="log4net.Config"%>
 <%@ Import namespace="log4net"%>
@@ -9,6 +10,8 @@
     
     void Application_Start(object sender, EventArgs e) 
     {
+        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
         XmlElement config = (XmlElement)ConfigurationManager.GetSection("log4net");
         XmlConfigurator.Configure(config);
         
@@ -26,12 +29,12 @@
     {
         log.DebugFormat("Begin Request '{0}'", HttpContext.Current.Request.Url.AbsoluteUri);
     }
-    
+
     void Application_End(object sender, EventArgs e) 
     {
         log.Info("Application was stopped");
     }
-        
+
     void Application_Error(object sender, EventArgs e) 
     { 
         log.Error("Application Error", Server.GetLastError());
