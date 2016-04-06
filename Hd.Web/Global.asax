@@ -1,3 +1,4 @@
+<%@ Import Namespace="System.Net" %>
 <%@ Import namespace="log4net.Config"%>
 <%@ Import namespace="log4net"%>
 <%@ Import namespace="System.Xml"%>
@@ -8,6 +9,8 @@
     
     void Application_Start(object sender, EventArgs e) 
     {
+        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
         XmlElement config = (XmlElement)ConfigurationManager.GetSection("log4net");
         XmlConfigurator.Configure(config);
         log.Info("Application was started");
