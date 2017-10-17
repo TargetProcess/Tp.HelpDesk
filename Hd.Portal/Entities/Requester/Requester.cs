@@ -74,10 +74,10 @@ namespace Hd.Portal
 		{
 			log.DebugFormat("Find user by email '{0}'", email);
 			var service = ServiceManager.GetService<RequesterService>();
-			RequesterDTO dto = service.FindByEmail(email);
-			if (dto == null)
+			RequesterDTO[] requesterDtos = service.Retrieve("from Requester as r where r.Email = ? and r.DeleteDate is null", new object[] { email });
+			if (requesterDtos.Length == 0)
 				return null;
-			return DataConverter<Request>.Convert(dto, new Requester()) as Requester;
+			return DataConverter<Requester>.Convert(requesterDtos[0], new Requester()) as Requester;
 		}
 
 		public static bool ForgotPassword(string email)
