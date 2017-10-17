@@ -9,7 +9,7 @@
     
     void Application_Start(object sender, EventArgs e) 
     {
-        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+        ServicePointManager.SecurityProtocol |= (SecurityProtocolType)768 | (SecurityProtocolType)3072;
 
         XmlElement config = (XmlElement)ConfigurationManager.GetSection("log4net");
         XmlConfigurator.Configure(config);
